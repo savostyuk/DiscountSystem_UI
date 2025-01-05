@@ -1,0 +1,11 @@
+@use "../../../styles.scss" as *;
+
+.nav-moderator-admin {
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 400px) {
+    .nav-title {
+        padding: 0 0.5rem;
+    }
+}

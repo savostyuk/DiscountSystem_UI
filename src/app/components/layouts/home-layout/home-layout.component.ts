@@ -10,10 +10,10 @@ import { IPageTitle } from '../../../models/page-title.interface';
 @Component({
   selector: 'app-home-layout',
   standalone: true,
-  imports: [RouterModule, 
-    TranslateModule, 
-    CommonModule, 
-    HeaderComponent, 
+  imports: [RouterModule,
+    TranslateModule,
+    CommonModule,
+    HeaderComponent,
     MatTabsModule],
   templateUrl: './home-layout.component.html',
   styleUrl: './home-layout.component.scss'
@@ -26,19 +26,19 @@ export class HomeLayoutComponent {
   pageTitle = "";
 
   bgImages: IBgImage[] = [
-    {imagePath: 'images/background-image/Desc_laptop.png', pagePath: '/discounts'},
-    {imagePath: 'images/background-image/Sales_girl.png', pagePath: '/favorites'},
-    {imagePath: 'images/background-image/boy_with_nout.png', pagePath: '/profile'},
-    {imagePath: 'images/background-image/Man_with_pc.png', pagePath: '/admin/users'},
+    { imagePath: 'images/background-image/Desc_laptop.png', pagePath: '/discounts' },
+    { imagePath: 'images/background-image/Sales_girl.png', pagePath: '/favorites' },
+    { imagePath: 'images/background-image/boy_with_nout.png', pagePath: '/profile' },
+    { imagePath: 'images/background-image/Man_with_pc.png', pagePath: '/admin/users' },
   ];
 
   pageTitles: IPageTitle[] = [
-    {localizationKey: 'header.discounts', pagePath: '/discounts'},
-    {localizationKey: 'header.favorites', pagePath: '/favorites'},
-    {localizationKey: 'header.profile', pagePath: '/profile'},
-    {localizationKey: 'header.moderator', pagePath: '/moderator/vendors'},
-    {localizationKey: 'header.moderator', pagePath: '/moderator/categories'},
-    {localizationKey: 'header.admin', pagePath: '/admin/users'},
+    { localizationKey: 'header.discounts', pagePath: '/discounts' },
+    { localizationKey: 'header.favorites', pagePath: '/favorites' },
+    { localizationKey: 'header.profile', pagePath: '/profile' },
+    { localizationKey: 'header.moderator', pagePath: '/moderator/vendors' },
+    { localizationKey: 'header.moderator', pagePath: '/moderator/categories_tags' },
+    { localizationKey: 'header.admin', pagePath: '/admin/users' },
   ];
 
   ngOnInit(): void {

@@ -1,0 +1,44 @@
+@use "../../../../../styles.scss" as *;
+
+.chips-container {
+    mat-chip {
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+
+    .mat-chip.mat-standard-chip {
+        margin: 0.5rem 0.5rem 0.5rem 0;
+        @include glass;
+    }
+
+    .chips-input {
+        width: 7rem;
+        font: 400 14px/20px Montserrat;
+        letter-spacing: normal;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.list-input-container {
+    width: 100%;
+
+    mat-form-field {
+        width: calc(100% - 8rem);
+    }
+
+    button {
+        font-size: 1rem;
+        background-color: $color-blue-green;
+        float: right;
+        width: 7rem;
+        margin-top: 8px;
+
+        &:disabled {
+            background-color: $color-white;
+            @include glass;
+        }
+    }
+}

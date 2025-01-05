@@ -1,1 +1,33 @@
-<p>categories works!</p>
+<div class="category-and-tag-container">
+    <div class="category-and-tag-wrapper">
+        <div class="category-and-tag-title">{{ 'categories-and-tags.categories' | translate }}</div>
+
+        <div class="category-and-tag-content">
+            <app-list-input [label]="'categories-and-tags.category' | translate" [options]="categoriesAll"
+                [addElement]="addCategory.bind(this)" [deleteElement]="deleteCategory.bind(this)"
+                [editElement]="editCategory.bind(this)" [isDisabled]=false
+                (changeData)="onChangeData()"></app-list-input>
+        </div>
+    </div>
+
+    <div class="category-and-tag-wrapper">
+        <div class="category-and-tag-title">{{ 'categories-and-tags.tags' | translate }}</div>
+
+        <mat-form-field appearance="fill" class="select-category">
+            <mat-label>{{'categories-and-tags.category' | translate }}</mat-label>
+            <mat-select [(ngModel)]="activeCategoryId" (ngModelChange)="showTagsList()">
+
+                <mat-option [value]="option.id" *ngFor="let option of categoriesAll">
+                    {{ option.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="category-and-tag-content">
+            <app-list-input [label]="'categories-and-tags.tag' | translate" [options]="tagsAll"
+                [addElement]="addTag.bind(this)" [deleteElement]="deleteTag.bind(this)"
+                [editElement]="editTag.bind(this)" [isDisabled]="isDisabled" [activeCategoryId]="activeCategoryId"
+                (changeData)="onChangeData()"></app-list-input>
+        </div>
+    </div>
+</div>

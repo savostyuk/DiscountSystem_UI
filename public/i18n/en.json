@@ -9,9 +9,28 @@
   },
   "moderator": {
     "vendors": "Vendors",
-    "categories": "Categories"
+    "categories": "Categories & Tags"
   },
   "admin": {
     "users": "Users"
+  },
+  "categories-and-tags": {
+    "categories": "Categories",
+    "tags": "Tags",
+    "category": "Category",
+    "add": "Add",
+    "tag": "Tag"
+  },
+  "confirmation": {
+    "delete": {
+      "message": "Are you sure you want to delete?",
+      "button-positive": "Delete",
+      "button-negative": "Cancel"
+    },
+    "change": {
+      "message": "Are you sure you want to close the pop-up? Your changes will not be saved",
+      "button-positive": "Yes",
+      "button-negative": "No"
+    }
   }
 }

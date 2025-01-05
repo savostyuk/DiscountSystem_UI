@@ -2,7 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 $color-blue-green: #8ad5e7;
+$color-white: #fff;
+$color-gray: #B0B4B6;
+$shadow-gray: 0 4px 30px rgba(34, 35, 38, 0.15);
 $margin-half: 0.5rem;
+$padding-last: 1.5rem;
+$border-radius-small: .33rem;
+$font-vendor: 1.5rem;
+$font-title: 1.1rem;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Montserrat', sans-serif; }
@@ -19,3 +26,29 @@ body { margin: 0; font-family: 'Montserrat', sans-serif; }
     align-self: center;
 }
   
+@mixin mat-grid-tile {
+    box-shadow: $shadow-gray;
+    border-radius: $border-radius-small;
+  
+    app-discount-card,
+    app-vendor-card {
+      user-select: none;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .mat-input-element {
+    caret-color: rgba(0, 0, 0, .6);
+  }
+  
+  .mat-form-field.mat-focused .mat-form-field-label,
+  .mat-form-field.mat-focused.mat-primary .mat-select-arrow,
+  .mat-datepicker-toggle-active {
+  color: rgba(0, 0, 0, .6);
+  }
+
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex:hover .mat-form-field-outline {
+    color: $color-gray;
+  }
