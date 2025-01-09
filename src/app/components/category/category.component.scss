@@ -1,0 +1,8 @@
+@use "../../../styles.scss" as *;
+
+.category {
+  @include category-tags;
+  @extend .borderSolidColor !optional;
+  @extend .backgroundColor !optional;
+  color: $color-white;
+}

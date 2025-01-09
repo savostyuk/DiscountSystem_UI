@@ -1,0 +1,7 @@
+@use "../../../styles.scss" as *;
+
+.tag {
+  @include category-tags;
+  @extend .borderSolidColor !optional;
+  @extend .textColor !optional;
+}

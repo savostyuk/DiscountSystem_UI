@@ -1,0 +1,69 @@
+@use "../../../styles.scss" as *;
+
+.discount-card:hover {
+  cursor: pointer;
+}
+
+.discount-card {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  box-shadow: $shadow-gray;
+  border-radius: $border-radius-small;
+  @include glass;
+
+  .discount-card-header {
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: .5rem;
+
+    .discount-card-title {
+      position: relative;
+      max-height: fit-content;
+      align-self: center;
+      max-width: 80%;
+      font-size: #{$font-vendor * 0.9};
+      font-weight: 500;
+    }
+  }
+
+  .discount-card-content {
+    padding: 0 .5rem .5rem .5rem;
+    height: calc(60% - 1.5rem);
+
+    .discount-card-content-description {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 0.8rem;
+    }
+
+    .category-and-tags {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+
+      app-category,
+      app-tag {
+        max-width: calc(50% - 1rem);
+      }
+    }
+
+    .additional-tags {
+      margin-left: -.15rem;
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      line-height: 1rem;
+      @extend .textColor;
+
+      span {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
