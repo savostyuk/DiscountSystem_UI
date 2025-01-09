@@ -1,0 +1,83 @@
+<div class="mat-dialog-vendor">
+    <div mat-dialog-content class="mat-dialog-content">
+
+        <div class="add-vendor-background">
+            <div class="add-vendor-title">
+                {{(vendorId.id)
+                ? ('vendors.edit' | translate)
+                : ('vendors.add' | translate)}}
+            </div>
+        </div>
+
+        <div class="add-vendor-content">
+            <div class="add-vendor-info">
+                <span class="add-vendor-info-title">{{ 'vendors.add-vendor.info' | translate }}:</span>
+                <div class="add-vendor-group">
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{ 'vendors.add-vendor.name' | translate }}</mat-label>
+
+                        <input [(ngModel)]="vendor.vendorName" [formControl]="vendorName" matInput required>
+                    </mat-form-field>
+                    <mat-error *ngIf="vendorName.hasError('maxlength')" class="helper-error-text">
+                        {{ 'errors.vendor-name-maxlength-error' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="vendorName.touched && vendorName.hasError('required')" class="helper-error-text">
+                        {{ 'errors.vendor-name-required-error' | translate }}
+                    </mat-error>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{ 'vendors.add-vendor.hours' | translate }}</mat-label>
+
+                        <input [(ngModel)]="vendor.workingHours" matInput>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{ 'vendors.add-vendor.web-site' | translate }}</mat-label>
+
+                        <input [(ngModel)]="vendor.website" matInput>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{ 'vendors.add-vendor.email' | translate }}</mat-label>
+
+                        <input [(ngModel)]="vendor.email" matInput>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{ 'vendors.add-vendor.address' | translate }}</mat-label>
+
+                        <input [(ngModel)]="vendor.address" matInput>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{ 'vendors.add-vendor.phone' | translate }}</mat-label>
+
+                        <input [(ngModel)]="vendor.phone" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="add-vendor-discounts">
+                <span class="add-vendor-info-title">{{ 'vendors.add-vendor.dsk' | translate }}:</span>
+
+                <button (click)="openDiscountModal()" [disabled]="!vendor.id" class="add-discount-button"
+                    mat-raised-button>
+                    {{ 'vendors.add-vendor.add-dsk' | translate }}
+                </button>
+
+                <div class="vendors-component">
+                    <app-edit-discount-card *ngFor="let discount of vendor.discounts, let i = index"
+                        (click)="openDiscountModal(discount, i)" [discountInfo]="discount"
+                        (removeDiscountFromVendor)="deleteDiscount(discount.id)">
+                    </app-edit-discount-card>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <mat-dialog-actions class="add-vendor-buttons">
+        <button mat-button (click)="checkChanges()">{{ 'vendors.add-vendor.close' | translate }}</button>
+        <button mat-raised-button [disabled]="isSaveDisabled() || canNotBeSaved()" (click)="addUpdateNewVendor()">{{
+            'vendors.add-vendor.save' | translate }}</button>
+    </mat-dialog-actions>
+</div>

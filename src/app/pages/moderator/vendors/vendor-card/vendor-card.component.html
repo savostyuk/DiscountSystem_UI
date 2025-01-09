@@ -1,0 +1,10 @@
+<div class="vendor-card" *ngIf="data">
+    <div class="vendor-card-header">
+      <div class="vendor-card-title">{{data.vendorName}}</div>
+  
+      <div class="btn btn-delete" (click)="$event.stopPropagation()">
+        <span class="material-icons" (click)="deleteVendor()">delete_outline</span>
+      </div>
+    </div>
+  </div>
+  
