@@ -1,14 +1,14 @@
 @use '../../../styles.scss' as *;
 
 .header {
-  background: linear-gradient(90.1deg, #8579FF 15.04%, #D1E6F1 71.85%);
+  @include glass;
   opacity: 1;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 2;
 
-  .container {
+  .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,8 +17,8 @@
     .header-title {
       font-size: 1.3rem;
       font-weight: bold;
-      color: #F3F3F3;
       text-transform: uppercase;
+      color: $color-black;
     }
 
     .header-title:hover {
@@ -45,7 +45,8 @@
       text-decoration: none;
       color: #303030;
 
-      .person-name, .person-place {
+      .person-name,
+      .person-place {
         font-size: 1.6rem;
         font-weight: normal;
       }

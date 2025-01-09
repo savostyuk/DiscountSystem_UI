@@ -1,23 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+$height-header: 3.8rem;
 $color-blue-green: #8ad5e7;
+$color-red: #DB0404;
 $color-white: #fff;
+$color-black: #333333;
 $color-gray: #B0B4B6;
 $shadow-gray: 0 4px 30px rgba(34, 35, 38, 0.15);
+$shadow-violet: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 $margin-half: 0.5rem;
+$margin-1: 1rem;
+$margin-category-tag: .5rem .5rem .5rem 0;
 $padding-last: 1.5rem;
+$padding-category-tag: 0 0.3rem;
 $border-radius-small: .33rem;
 $font-vendor: 1.5rem;
 $font-title: 1.1rem;
+$font-content: 0.85rem;
+
+$color-theme-light-blue: #227cac;
+$color-theme-pink-yellow: #db5a5a;
+$color-theme-green-blue: #628C97;
+$color-theme-purple-blue: #726297;
+$color-theme-green-orange: #498d63;
+$color-theme-dark-blue: #165986;
+$color-theme-dark-violet: #6b2686;
+$color-theme-dark-grey: #606b77;
+$color-theme-dark-green: #20693e;
+$color-theme-dark-pink: #9b2f62;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Montserrat', sans-serif; }
 
+.mat-mdc-dialog-content {
+  max-height: none;
+}
+
 @mixin glass {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    border: none;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+@mixin font-bold-vendor {
+  font-size: $font-vendor;
+  font-weight: bold;
+  color: $color-black;
+}
+
+@mixin font-bold-discount {
+  font-size: $font-title;
+  font-weight: bold;
 }
 
 @mixin img-profile-language {
@@ -38,6 +71,30 @@ body { margin: 0; font-family: 'Montserrat', sans-serif; }
     }
   }
 
+  @mixin btn-icon {
+    user-select: none;
+  
+    span {
+      font-size: 2rem;
+      color: $color-white;
+    }
+  
+    span:hover {
+      cursor: pointer;
+    }
+  }
+
+  @mixin category-tags {
+    align-items: center;
+    line-height: 1.5rem;
+    border-radius: 0.3rem;
+    padding: $padding-category-tag;
+    margin: $margin-category-tag;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .mat-input-element {
     caret-color: rgba(0, 0, 0, .6);
   }
@@ -52,3 +109,245 @@ body { margin: 0; font-family: 'Montserrat', sans-serif; }
   .mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex:hover .mat-form-field-outline {
     color: $color-gray;
   }
+
+  .light {
+    .backgroundDisabled {
+      background-color: rgba(0, 0, 0, .12);
+      color: rgba(0, 0, 0, .26);
+    }
+  
+    .textTitleColor {
+      color: $color-black;
+    }
+  }
+  
+  .dark {
+    .backgroundDisabled {
+      background-color: rgba(255, 255, 255, .12);
+      color: rgba(255, 255, 255, .26);
+    }
+  
+    .textTitleColor {
+      color: $color-white;
+    }
+  }
+  
+.light-blue {
+  .backgroundColor {
+    background-color: $color-theme-light-blue;
+  }
+
+  .borderSolidColor {
+    border: 1px solid $color-theme-light-blue;
+  }
+
+  .textColor {
+    color: $color-theme-light-blue;
+  }
+
+  .textTitleColor {
+    color: $color-black;
+  }
+
+  .borderColor {
+    border-color: $color-theme-light-blue;
+  }
+}
+
+.pink-yellow {
+  .backgroundColor {
+    background-color: $color-theme-pink-yellow;
+  }
+
+  .borderSolidColor {
+    border: 1px solid $color-theme-pink-yellow;
+  }
+
+  .textColor {
+    color: $color-theme-pink-yellow;
+  }
+
+  .textTitleColor {
+    color: $color-black;
+  }
+
+  .borderColor {
+    border-color: $color-theme-pink-yellow;
+  }
+}
+
+.green-blue {
+  .backgroundColor {
+    background-color: $color-theme-green-blue;
+  }
+
+  .borderSolidColor {
+    border: 1px solid $color-theme-green-blue;
+  }
+
+  .textColor {
+    color: $color-theme-green-blue;
+  }
+
+  .textTitleColor {
+    color: $color-black;
+  }
+
+  .borderColor {
+    border-color: $color-theme-green-blue;
+  }
+}
+
+.purple-blue {
+  .backgroundColor {
+    background-color: $color-theme-purple-blue;
+  }
+
+  .borderSolidColor {
+    border: 1px solid $color-theme-purple-blue;
+  }
+
+  .textColor {
+    color: $color-theme-purple-blue;
+  }
+
+  .textTitleColor {
+    color: $color-black;
+  }
+
+  .borderColor {
+    border-color: $color-theme-purple-blue;
+  }
+}
+
+.green-orange {
+  .backgroundColor {
+    background-color: $color-theme-green-orange;
+  }
+
+  .borderSolidColor {
+    border: 1px solid $color-theme-green-orange;
+  }
+
+  .textColor {
+    color: $color-theme-green-orange;
+  }
+
+  .textTitleColor {
+    color: $color-black;
+  }
+
+  .borderColor {
+    border-color: $color-theme-green-orange;
+  }
+}
+
+.dark-blue {
+  .backgroundColor {
+    background-color: $color-theme-dark-blue;
+  }
+
+  .borderSolidColor {
+    border: 1px solid $color-theme-dark-blue;
+  }
+
+  .textColor {
+    color: $color-theme-dark-blue;
+  }
+
+  .textTitleColor {
+    color: $color-white;
+  }
+
+  .borderColor {
+    border-color: $color-theme-dark-blue;
+  }
+}
+
+.dark-violet {
+  .backgroundColor {
+    background-color: $color-theme-dark-violet;
+  }
+
+  .borderSolidColor {
+    border: 1px solid $color-theme-dark-violet;
+  }
+
+  .textColor {
+    color: $color-theme-dark-violet;
+  }
+
+  .textTitleColor {
+    color: $color-white;
+  }
+
+  .borderColor {
+    border-color: $color-theme-dark-violet;
+  }
+}
+
+.dark-grey {
+  .backgroundColor {
+    background-color: $color-theme-dark-grey;
+  }
+
+  .borderSolidColor {
+    border: 1px solid $color-theme-dark-grey;
+  }
+
+  .textColor {
+    color: $color-theme-dark-grey;
+  }
+
+  .textTitleColor {
+    color: $color-white;
+  }
+
+  .borderColor {
+    border-color: $color-theme-dark-grey;
+  }
+}
+
+.dark-green {
+  .backgroundColor {
+    background-color: $color-theme-dark-green;
+  }
+
+  .borderSolidColor {
+    border: 1px solid $color-theme-dark-green;
+  }
+
+  .textColor {
+    color: $color-theme-dark-green;
+  }
+
+  .textTitleColor {
+    color: $color-white;
+  }
+
+  .borderColor {
+    border-color: $color-theme-dark-green;
+  }
+}
+
+.dark-pink {
+  .backgroundColor {
+    background-color: $color-theme-dark-pink;
+  }
+
+  .borderSolidColor {
+    border: 1px solid $color-theme-dark-pink;
+  }
+
+  .textColor {
+    color: $color-theme-dark-pink;
+  }
+
+  .textTitleColor {
+    color: $color-white;
+  }
+
+  .borderColor {
+    border-color: $color-theme-dark-pink;
+  }
+}

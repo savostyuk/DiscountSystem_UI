@@ -4,6 +4,10 @@
     mat-chip {
         margin-right: 5px;
         margin-bottom: 5px;
+        background-color: rgba(218, 226, 249, 0.5) !important;
+        .mat-mdc-chip-action-label {
+            color: black !important;
+        }
     }
 
     .mat-chip.mat-standard-chip {
@@ -24,21 +28,24 @@
 
 .list-input-container {
     width: 100%;
-
+  
     mat-form-field {
-        width: calc(100% - 8rem);
+      width: calc(100% - 8rem);
     }
-
-    button {
-        font-size: 1rem;
-        background-color: $color-blue-green;
-        float: right;
-        width: 7rem;
-        margin-top: 8px;
-
-        &:disabled {
-            background-color: $color-white;
-            @include glass;
-        }
+  
+    .list-input-button {
+      line-height: 3.25rem;
+      font-size: 1rem;
+      @extend .backgroundColor;
+      color: $color-white !important;
+      vertical-align: top;
+      float: right;
+      width: 7rem;
+      margin-top: 8px;
+  
+      &:disabled {
+        @extend .backgroundDisabled;
+      }
     }
-}
+  }
+  

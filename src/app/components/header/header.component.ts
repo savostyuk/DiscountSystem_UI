@@ -5,15 +5,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageSelectionComponent } from './language-selection/language-selection.component';
+import { SelectBackgroundComponent } from "./select-background/select-background.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, 
-    TranslateModule, 
-    LanguageSelectionComponent, 
-    MatMenuModule, 
-    MatTabsModule],
+  imports: [RouterModule,
+    TranslateModule,
+    LanguageSelectionComponent,
+    MatMenuModule,
+    MatTabsModule,
+    SelectBackgroundComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   encapsulation: ViewEncapsulation.None
@@ -31,7 +33,7 @@ export class HeaderComponent {
   logout(): void {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    
+
     this.router.navigate(['/login']);
   }
 

@@ -1,48 +1,60 @@
 @use "../../../../styles.scss" as *;
 
 .category-and-tag-container {
-    margin-top: 2rem;
+  margin-top: 2rem;
 
-    .mat-form-field-appearance-outline .mat-form-field-wrapper {
-        margin: unset;
+  .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: unset;
+  }
+
+  .category-and-tag-wrapper {
+    width: calc(50% - 1rem);
+    display: inline-block;
+    vertical-align: top;
+
+    .select-category {
+      width: 100%;
     }
 
-    .category-and-tag-wrapper {
-        width: calc(50% - 1rem);
-        display: inline-block;
-        vertical-align: top;
-
-        .select-category {
-            width: 100%;
-        }
-
-        .category-and-tag-title {
-            font-size: $font-title;
-            font-weight: bold;
-            margin-bottom: 2rem;
-        }
-
-        .category-and-tag-content {
-            position: relative;
-            display: flex;
-            flex-direction: row;
-
-            app-list-input {
-                width: 100%;
-            }
-        }
+    .category-and-tag-title {
+      @extend .textTitleColor;
+      font-size: $font-title;
+      font-weight: bold;
+      margin-bottom: 2rem;
     }
 
-    .mat-form-field-appearance-fill .mat-form-field-flex {
-        @include glass;
-        border-radius: $border-radius-small;
-    }
+    .category-and-tag-content {
+      position: relative;
+      display: flex;
+      flex-direction: row;
 
-    .category-and-tag-wrapper:first-child {
-        margin-right: 1rem;
+      app-list-input {
+        width: 100%;
+      }
     }
+  }
 
-    .category-and-tag-wrapper:nth-child(2) {
-        margin-left: 1rem;
-    }
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    @include glass;
+    border-radius: $border-radius-small;
+  }
+
+  .category-and-tag-wrapper:first-child {
+    margin-right: 1rem;
+  }
+
+  .category-and-tag-wrapper:nth-child(2) {
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .category-and-tag-container .category-and-tag-wrapper {
+    display: block;
+    width: 100%;
+  }
+
+  .category-and-tag-container .category-and-tag-wrapper:nth-child(2) {
+    margin: 2rem 0 1rem 0;
+  }
 }
