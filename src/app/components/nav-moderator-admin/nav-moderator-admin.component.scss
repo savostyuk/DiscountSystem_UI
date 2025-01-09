@@ -2,10 +2,8 @@
 
 .nav-moderator-admin {
     margin-bottom: 1.5rem;
-}
 
-@media (max-width: 400px) {
-    .nav-title {
-        padding: 0 0.5rem;
+    .nav-title .mdc-tab__text-label {
+        @extend .textTitleColor;
     }
 }

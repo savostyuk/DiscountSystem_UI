@@ -1,0 +1,49 @@
+@use '../../../styles.scss' as *;
+
+.confirm-modal-backdrop.cdk-overlay-backdrop {
+    width: 100%;
+    height: 100%;
+}
+
+.confirm-modal.cdk-overlay-pane {
+    width: 20rem;
+
+
+    .mat-dialog-container {
+        padding: 1rem;
+        border-radius: $border-radius-small;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+
+        .confirm-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .mat-dialog-title {
+                margin: 0 0 10px;
+            }
+        }
+    }
+}
+
+.confirm-buttons {
+    text-align: right;
+    font-weight: bold;
+    margin-top: $margin-1;
+
+    button:not(:last-child) {
+        color: $color-black;
+    }
+
+    button:last-child {
+        @extend .backgroundColor;
+        color: $color-white;
+
+        &:disabled {
+            background-color: rgba(0, 0, 0, .12);
+            color: rgba(0, 0, 0, .26);
+        }
+    }
+}

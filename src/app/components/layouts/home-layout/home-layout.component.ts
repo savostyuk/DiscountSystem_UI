@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { HeaderComponent } from "../../header/header.component";
@@ -16,7 +16,8 @@ import { IPageTitle } from '../../../models/page-title.interface';
     HeaderComponent,
     MatTabsModule],
   templateUrl: './home-layout.component.html',
-  styleUrl: './home-layout.component.scss'
+  styleUrl: './home-layout.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeLayoutComponent {
   private readonly router = inject(Router);
