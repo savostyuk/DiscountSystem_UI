@@ -1,0 +1,128 @@
+@use "../../../../../styles.scss" as *;
+
+.mat-icon {
+  @extend .textColor;
+}
+
+.vendor-details-modal-backdrop.cdk-overlay-backdrop {
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.vendor-details-modal.cdk-overlay-pane {
+  width: 66rem;
+
+  .add-vendor-content {
+    display: flex;
+    justify-content: space-between;
+    padding: $margin-1;
+
+    .add-vendor-info-title {
+      margin-bottom: $margin-1;
+      font-size: $font-title;
+      font-weight: bold;
+    }
+  }
+
+  .add-vendor-info,
+  .add-vendor-discounts {
+    width: calc(50% - 1.5rem);
+    display: flex;
+    flex-direction: column;
+
+    .mat-form-field {
+      display: block;
+    }
+  }
+
+  .add-vendor-info {
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+      padding-bottom: 0;
+      margin: 0 0 $margin-1 0;
+      @include glass;
+      border-radius: 5px;
+    }
+
+    .mat-select-arrow {
+      border-top: 0;
+    }
+  }
+
+  .add-vendor-discounts {
+    .vendors-component {
+      margin-top: $margin-1;
+
+      .edit-discount-card-container {
+        @include glass;
+        box-shadow: $shadow-gray;
+        border-radius: $border-radius-small;
+      }
+
+      app-edit-discout-card:hover {
+        cursor: pointer;
+      }
+    }
+
+    .add-discount-button {
+      min-height: 3rem;
+      @extend .backgroundColor;
+      color: $color-white;
+      &:disabled {
+        background-color: rgba(0, 0, 0, .12);
+        color: rgba(0, 0, 0, .26);
+      }
+    }
+  }
+
+  .add-vendor-background {
+    height: $height-header;
+    padding: 0 $margin-1;
+
+    .add-vendor-title {
+      @include font-bold-vendor;
+      line-height: $height-header;
+    }
+  }
+
+  .add-vendor-group {
+    padding: 1rem 1rem 0 1rem;
+    margin-bottom: $margin-1;
+    @include glass;
+    border-radius: $border-radius-small;
+    box-shadow: $shadow-gray;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}
+
+.add-vendor-buttons {
+  text-align: right;
+  font-weight: bold;
+  margin: 0 $margin-1 0 0;
+  padding: 0;
+
+  button:not(:last-child) {
+    color: $color-black;
+  }
+
+  button:last-child {
+    @extend .backgroundColor;
+    color: $color-white;
+    margin-left: $margin-1;
+
+    &:disabled {
+      background-color: rgba(0, 0, 0, .12);
+      color: rgba(0, 0, 0, .26);
+    }
+  }
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  @extend .backgroundColor;
+}
+
+.mat-ripple-element {
+  display: none;
+}

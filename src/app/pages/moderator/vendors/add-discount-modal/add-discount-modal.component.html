@@ -1,0 +1,100 @@
+<div mat-dialog-content class="mat-dialog-content">
+
+  <div class="add-discount-header">
+    <div class="add-discount-title">
+      {{ (data.indexForLabel)
+      ? ('vendors.add-discount.edit' | translate)
+      : ('vendors.add-discount.add' | translate) }}
+    </div>
+  </div>
+
+  <form class="add-discount-info" [formGroup]="form">
+    <div class="add-discount-fields">
+      <mat-form-field class="add-discount-name" appearance="outline">
+        <mat-label>{{ 'vendors.add-discount.promo' | translate }}</mat-label>
+
+        <input matInput [(ngModel)]="discountDetail.promocode" formControlName="promocode" required>
+      </mat-form-field>
+      <mat-error *ngIf="form.get('promocode')?.hasError('maxlength')" class="helper-error-text">
+        {{ 'errors.promocode-error' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('promocode')?.touched && form.get('promocode')?.hasError('required')"
+        class="helper-error-text">
+        {{ 'errors.promocode-required-error' | translate }}
+      </mat-error>
+
+      <mat-form-field class="add-discount-conditions" appearance="outline">
+        <mat-label>{{ 'vendors.add-discount.conditions' | translate }}</mat-label>
+
+        <input matInput [(ngModel)]="discountDetail.condition" formControlName="condition" required>
+      </mat-form-field>
+      <mat-error *ngIf="form.get('condition')?.hasError('maxlength')" class="helper-error-text">
+        {{ 'errors.conditions-error' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('condition')?.touched && form.get('condition')?.hasError('required')"
+        class="helper-error-text">
+        {{ 'errors.conditions-required-error' | translate }}
+      </mat-error>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'vendors.add-discount.start' | translate }}</mat-label>
+
+        <input matInput readonly [max]="discountDetail.endDate" [(ngModel)]="discountDetail.startDate"
+          [matDatepicker]="pickerStart" formControlName="dateStart" required>
+
+        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+
+        <mat-datepicker #pickerStart></mat-datepicker>
+      </mat-form-field>
+      <mat-error *ngIf="form.get('dateStart')?.touched && form.get('dateStart')?.hasError('required')"
+        class="helper-error-text">
+        {{ 'errors.date-start-required-error' | translate }}
+      </mat-error>
+
+      <mat-form-field appearance="outline" *ngIf="discountDetail">
+        <mat-label>{{ 'vendors.add-discount.end' | translate }}</mat-label>
+
+        <input matInput readonly [min]="discountDetail.startDate" [(ngModel)]="discountDetail.endDate"
+          [matDatepicker]="pickerEnd" formControlName="dateEnd" required>
+
+        <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+
+        <mat-datepicker #pickerEnd></mat-datepicker>
+      </mat-form-field>
+      <mat-error *ngIf="form.get('dateEnd')?.touched && form.get('dateEnd')?.hasError('required')"
+        class="helper-error-text">
+        {{ 'errors.date-start-required-error' | translate }}
+      </mat-error>
+
+      <mat-form-field appearance="outline" class="add-discount-category">
+        <mat-label>{{ 'vendors.add-discount.category' | translate }}</mat-label>
+
+        <mat-select formControlName="category" [(ngModel)]="discountDetail.categoryId" (ngModelChange)="showTagList()"
+          required>
+          <mat-option *ngFor="let category of categoriesAll" [value]="category.id">{{ category.categoryName
+            }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-error *ngIf="form.get('category')?.touched && form.get('category')?.hasError('required')"
+        class="helper-error-text">
+        {{ 'errors.category-required-error' | translate }}
+      </mat-error>
+
+      <mat-form-field appearance="outline" class="add-discount-tag" *ngIf="discountDetail">
+        <mat-label>{{ 'vendors.add-discount.tag' | translate }}</mat-label>
+
+        <mat-select formControlName="tag" [(ngModel)]="discountDetail.tags" [disabled]="!discountDetail.categoryId"
+          multiple>
+          <mat-option *ngFor="let tag of tagsByCategory" [value]="tag.id">{{ tag.tagName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="add-discount-button" *ngIf="discountDetail">
+      <button mat-button (click)="checkChanges()">{{ 'vendors.add-discount.cancel' | translate }}</button>
+
+      <button mat-raised-button [disabled]="form.invalid || canNotBeSaved()" [mat-dialog-close]="discountDetail">{{
+        'vendors.add-discount.save' | translate }}</button>
+    </div>
+  </form>
+</div>
