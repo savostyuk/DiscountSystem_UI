@@ -12,7 +12,8 @@
     "categories": "Категории и теги"
   },
   "admin": {
-    "users": "Пользователи"
+    "users": "Пользователи",
+    "event": "История событий"
   },
   "categories-and-tags": {
     "categories": "Категории",
@@ -63,6 +64,16 @@
       "cancel": "Отмена",
       "save": "Сохранить",
       "promo": "Промокод"
+    }
+  },
+  "users" : {
+    "admin": "Администратор",
+    "user": "Пользователь",
+    "moderator": "Модератор",
+    "active": "Активный",
+    "inactive": "Неактивный",
+    "add-profile": {
+      "save": "Сохранить"
     }
   },
   "errors": {

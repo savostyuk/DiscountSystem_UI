@@ -1,0 +1,19 @@
+<div class="user-card">
+    <div class="user-photo">
+      <img src='images/user.png' alt="User">
+    </div>
+  
+    <div class="user-card__info">
+      <h3 class="name">{{ user?.fullName }}</h3>
+      <p class="email">{{ user?.email }}</p>
+  
+      <mat-button-toggle-group class="btn-toggle"
+                               name="userRole"
+                               aria-label="Role"
+                               value="{{role}}">
+        <mat-button-toggle value="User" (change)="changeUserRole($event.value)">{{ 'users.user' | translate }}</mat-button-toggle>
+        <mat-button-toggle value="Moderator" (change)="changeUserRole($event.value)">{{ 'users.moderator' | translate }}</mat-button-toggle>
+        <mat-button-toggle value="Admin" (change)="changeUserRole($event.value)">{{ 'users.admin' | translate }}</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>

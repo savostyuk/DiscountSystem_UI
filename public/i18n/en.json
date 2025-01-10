@@ -12,7 +12,8 @@
     "categories": "Categories & Tags"
   },
   "admin": {
-    "users": "Users"
+    "users": "Users",
+    "event": "Event History"
   },
   "categories-and-tags": {
     "categories": "Categories",
@@ -63,6 +64,16 @@
       "cancel": "Cancel",
       "save": "Save",
       "promo": "Promocode"
+    }
+  },
+  "users": {
+    "admin": "Administrator",
+    "user": "User",
+    "moderator": "Moderator",
+    "active": "Active",
+    "inactive": "Inactive",
+    "add-profile": {
+      "save": "Save"
     }
   },
   "errors": {

@@ -24,7 +24,7 @@ export class HeaderComponent {
   private readonly router = inject(Router);
 
   tabs = HEADER_TABS;
-  userphoto = 'images/user.jpg';
+  userphoto = 'images/user.png';
 
   goToPerson(): void {
     this.router.navigate(['/profile']);

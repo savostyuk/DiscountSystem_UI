@@ -41,5 +41,10 @@ export const ADMIN_TABS: ITab[] = [
     name: 'Users',
     path: '/admin/users',
     localizationKey: 'admin.users'
+  },
+  {
+    name: 'Event History',
+    path: '/admin/event-history',
+    localizationKey: 'admin.event'
   }
 ];

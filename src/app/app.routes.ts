@@ -41,6 +41,7 @@ export const routes: Routes = [
             children: [
               {path: '', redirectTo: '/admin/users', pathMatch: 'full'},
               {path: 'users', component: UsersComponent},
+              {path: 'event-history', component: UsersComponent},
             ],
           }
         ]
