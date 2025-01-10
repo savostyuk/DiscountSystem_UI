@@ -15,48 +15,49 @@ import { roleGuard } from './components/guards/role-guard/role.guard';
 import { authGuard } from './components/guards/auth-guard/auth.guard';
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: HomeLayoutComponent,
-        canActivate: [authGuard],
+  {
+    path: '',
+    component: HomeLayoutComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: '', redirectTo: '/discounts', pathMatch: 'full' },
+      { path: 'discounts', component: DiscountsComponent },
+      { path: 'favorites', component: FavoritesComponent },
+      { path: 'profile', component: UserProfileComponent },
+      {
+        path: 'moderator',
+        canActivate: [authGuard, roleGuard],
+        data: {
+          roles: ['admin', 'moderator'],
+        },
+        component: ModeratorComponent,
         children: [
-          {path: '', redirectTo: '/discounts', pathMatch: 'full'},
-          {path: 'discounts', component: DiscountsComponent},
-          {path: 'favorites', component: FavoritesComponent},
-          {path: 'profile', component: UserProfileComponent},
-          {path: 'moderator',
-            canActivate: [authGuard, roleGuard],
-            data: {
-                role: 'moderator',
-            },
-            component: ModeratorComponent,
-            children: [
-                {path: '', redirectTo: '/moderator/vendors', pathMatch: 'full'},
-                {path: 'vendors', component: VendorsComponent},
-                {path: 'categories_tags', component: CategoriesComponent}
-            ]
-          },
-          {
-            path: 'admin',
-            canActivate: [authGuard, roleGuard],
-            data: {
-              role: 'admin',
-            },
-            component: AdminComponent,
-            children: [
-              {path: '', redirectTo: '/admin/users', pathMatch: 'full'},
-              {path: 'users', component: UsersComponent},
-              {path: 'event-history', component: UsersComponent},
-            ],
-          }
+          { path: '', redirectTo: '/moderator/vendors', pathMatch: 'full' },
+          { path: 'vendors', component: VendorsComponent },
+          { path: 'categories_tags', component: CategoriesComponent }
         ]
       },
       {
-        path: '',
-        component: LoginLayoutComponent,
+        path: 'admin',
+        canActivate: [authGuard, roleGuard],
+        data: {
+          roles: ['admin'],
+        },
+        component: AdminComponent,
         children: [
-          {path: 'login', component: LoginComponent},
-        ]
-      },
-      {path: '**', component: NotFoundComponent}, 
+          { path: '', redirectTo: '/admin/users', pathMatch: 'full' },
+          { path: 'users', component: UsersComponent },
+          { path: 'event-history', component: UsersComponent },
+        ],
+      }
+    ]
+  },
+  {
+    path: '',
+    component: LoginLayoutComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+    ]
+  },
+  { path: '**', component: NotFoundComponent },
 ];
