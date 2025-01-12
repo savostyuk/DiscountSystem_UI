@@ -14,8 +14,8 @@ export class UsersService {
     return this.http.get(`${BASE_API_URL}/users`);
   }
 
-  getUserDetails(vendorId: string): Observable<any> {
-    return this.http.get(`${BASE_API_URL}/users/${vendorId}`);
+  getUserDetails(userId: string): Observable<any> {
+    return this.http.get(`${BASE_API_URL}/users/${userId}`);
   }
 
   updateUser(updatedUser: any): Observable<any> {

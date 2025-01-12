@@ -14,7 +14,7 @@ export class RoleService {
 
     if (isString(token)) {
       this.decoded = jwtDecode(token);
-      this.role = this.decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+      this.role = this.decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
 
       return this.role;
     }

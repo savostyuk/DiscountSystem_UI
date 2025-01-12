@@ -9,6 +9,10 @@ import { SelectBackgroundComponent } from "./select-background/select-background
 import { RoleService } from '../../services/role-service/role.service';
 import { includes, slice } from 'lodash';
 import { ITab } from '../../models/tab.interface';
+import { IUser } from '../../models/user.interface';
+import { UsersService } from '../../services/users-service/users.service';
+import { tap } from 'rxjs/operators';
+import { JwtHelper } from '../../helpers/jwt.helper';
 
 @Component({
   selector: 'app-header',
@@ -26,17 +30,19 @@ import { ITab } from '../../models/tab.interface';
 export class HeaderComponent {
   private readonly router = inject(Router);
   private readonly roleService = inject(RoleService);
+  private readonly userService = inject(UsersService);
 
   tabs!: ITab[];
   userphoto = 'images/user.png';
+  userDetails!: IUser;
 
   ngOnInit() {
     this.getTabs();
+    this.getUserInfo();
   }
 
   getTabs(): ITab[] {
     const role = this.roleService.getRole();
-    console.log(role);
     switch (true) {
       case (includes(role, 'Admin')):
         return this.tabs = HEADER_TABS;
@@ -48,6 +54,12 @@ export class HeaderComponent {
       default:
         return this.tabs = slice(HEADER_TABS, 0, 2);
     }
+  }
+
+  getUserInfo() {
+    this.userService.getUserDetails(JwtHelper.getUserIdFromToken(localStorage.getItem('accessToken')!)).pipe(
+      tap((data) => this.userDetails = data),
+    ).subscribe();
   }
 
   goToPerson(): void {

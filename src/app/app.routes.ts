@@ -11,8 +11,8 @@ import { VendorsComponent } from './pages/moderator/vendors/vendors.component';
 import { CategoriesComponent } from './pages/moderator/categories/categories.component';
 import { ModeratorComponent } from './pages/moderator/moderator.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { roleGuard } from './components/guards/role-guard/role.guard';
-import { authGuard } from './components/guards/auth-guard/auth.guard';
+import { roleGuard } from './guards/role-guard/role.guard';
+import { authGuard } from './guards/auth-guard/auth.guard';
 
 export const routes: Routes = [
   {
