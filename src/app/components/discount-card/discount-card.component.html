@@ -1,21 +1,22 @@
 <div class="discount-card">
-    <div class="discount-card-header">
-      <div class="discount-card-title">{{discount.vendorName}}</div>
+  <div class="discount-card-header">
+    <div class="discount-card-title">{{discount.vendorName}}</div>
+    
+    <app-btn-favorite [isFavorite]="discount.isFavorite" [id]="discount.id" class="btn"></app-btn-favorite>
+  </div>
+
+  <div class="discount-card-content">
+    <div class="category-and-tags">
+      <app-category [categoryId]="discount.categoryId"></app-category>
+      <app-tag *ngIf="discount.tags.length" [tagId]="discount.tags[0]"></app-tag>
+      <div *ngIf="discount.tags.length - 1 > 0" class="additional-tags">
+        <span class="material-icons">add_circle</span>
+        {{ discount.tags.length - 1 }}
+      </div>
     </div>
-  
-    <div class="discount-card-content">
-      <div class="category-and-tags">
-        <app-category [categoryId]="discount.categoryId"></app-category>
-        <app-tag *ngIf="discount.tags.length" [tagId]="discount.tags[0]"></app-tag>
-        <div *ngIf="discount.tags.length - 1 > 0" class="additional-tags">
-          <span class="material-icons">add_circle</span>
-          {{ discount.tags.length - 1 }}
-        </div>
-      </div>
-  
-      <div class="discount-card-content-description">
-        {{discount.condition}}
-      </div>
+
+    <div class="discount-card-content-description">
+      {{discount.condition}}
     </div>
   </div>
-  
+</div>

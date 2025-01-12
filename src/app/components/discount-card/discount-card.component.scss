@@ -29,6 +29,11 @@
     }
   }
 
+  .btn {
+    position: relative;
+    align-self: flex-start;
+  }
+
   .discount-card-content {
     padding: 0 .5rem .5rem .5rem;
     height: calc(60% - 1.5rem);

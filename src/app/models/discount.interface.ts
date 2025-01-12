@@ -1,5 +1,3 @@
-import { ITag } from "./tag.interface";
-
 export interface IDiscount {
     id: string;
     vendorName: string;
@@ -12,5 +10,6 @@ export interface IDiscount {
     workingHours: string;
     startDate?: Date;
     endDate?: Date;
+    isFavorite?: boolean;
   }
   

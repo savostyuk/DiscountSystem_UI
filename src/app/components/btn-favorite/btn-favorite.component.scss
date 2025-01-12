@@ -1,0 +1,14 @@
+@use "../../../styles.scss" as *;
+
+.btn-favorite {
+  @include btn-icon;
+  opacity: 0.4;
+
+  span {
+    color: $color-red;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
