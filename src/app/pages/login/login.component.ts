@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,6 +18,7 @@ import { ToasterService } from '../../services/toaster-service/toaster.service';
     FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent {
   hide = true;
@@ -38,5 +39,9 @@ export class LoginComponent {
       }),
       catchError(() => of(this.toaster.open('The username and password you entered did not match our records. Please double-check and try again.')))
     ).subscribe();
+  }
+
+  goToRegister(): void {
+    this.router.navigate(['/register']);
   }
 }

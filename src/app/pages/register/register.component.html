@@ -1,0 +1,67 @@
+<div class="register-wrapper">
+    <div class="register-main">
+      <div class="register-main-content">
+        <img class="register-picture" src="images/Guy_with_like.svg" alt="Guy with like">
+      </div>
+    </div>
+  
+    <div class="register-form">
+      <div class="register-form-content">
+        <div class="register-title">Register for Discount System</div>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input [(ngModel)]="firstName" matInput required type="text">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input [(ngModel)]="lastName" matInput required type="text">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input [(ngModel)]="email" matInput required type="email">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input [(ngModel)]="password"
+                 matInput [type]="hidePassword ? 'password' : 'text'"
+                 required>
+          <button class="mat-icon-button"
+                  mat-icon-button
+                  matSuffix
+                  (click)="hidePassword = !hidePassword">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+          <input [(ngModel)]="confirmPassword"
+                 matInput [type]="hideConfirmPassword ? 'password' : 'text'"
+                 required>
+          <button class="mat-icon-button"
+                  mat-icon-button
+                  matSuffix
+                  (click)="hideConfirmPassword = !hideConfirmPassword">
+            <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+  
+        <mat-error *ngIf="password !== confirmPassword && confirmPassword" class="helper-error-text">
+          Passwords do not match.
+        </mat-error>
+  
+        <div class="register-button">
+          <button mat-raised-button
+                  color="primary"
+                  [disabled]="!firstName || !lastName || !email || !password || password !== confirmPassword"
+                  (click)="register()">Register
+          </button>
+        </div>
+        <p class="login-wrapper">Already have an account? <a (click)="goToLogin()">Login</a></p>
+      </div>
+    </div>
+  </div>

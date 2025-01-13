@@ -13,6 +13,7 @@ import { ModeratorComponent } from './pages/moderator/moderator.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { roleGuard } from './guards/role-guard/role.guard';
 import { authGuard } from './guards/auth-guard/auth.guard';
+import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
   {
@@ -56,7 +57,9 @@ export const routes: Routes = [
     path: '',
     component: LoginLayoutComponent,
     children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
     ]
   },
   { path: '**', component: NotFoundComponent },
