@@ -7,6 +7,7 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth-interceptor/auth.interceptor';
+import { loaderInterceptor } from './interceptors/loader-interceptor/loader.interceptor';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
     new TranslateHttpLoader(http, './i18n/', '.json');
@@ -17,7 +18,7 @@ export const appConfig: ApplicationConfig = {
       { eventCoalescing: true }), 
     provideRouter(routes), 
     provideAnimationsAsync(), 
-    provideHttpClient(withInterceptors([AuthInterceptor])),
+    provideHttpClient(withInterceptors([loaderInterceptor, AuthInterceptor])),
     importProvidersFrom([TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { IBgImage } from '../../../models/bg-image.interface';
 import { IPageTitle } from '../../../models/page-title.interface';
+import { LoaderComponent } from "../../loader/loader.component";
 
 @Component({
   selector: 'app-home-layout',
@@ -14,7 +15,8 @@ import { IPageTitle } from '../../../models/page-title.interface';
     TranslateModule,
     CommonModule,
     HeaderComponent,
-    MatTabsModule],
+    MatTabsModule,
+    LoaderComponent],
   templateUrl: './home-layout.component.html',
   styleUrl: './home-layout.component.scss',
   encapsulation: ViewEncapsulation.None
