@@ -3,6 +3,7 @@
 
 $height-header: 3.8rem;
 $color-blue-green: #8ad5e7;
+$color-green-badge: #19902c;
 $color-red: #DB0404;
 $color-white: #fff;
 $color-black: #333333;
@@ -11,6 +12,7 @@ $shadow-gray: 0 4px 30px rgba(34, 35, 38, 0.15);
 $shadow-violet: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 $margin-half: 0.5rem;
 $margin-1: 1rem;
+$margin-small: 0.35rem;
 $margin-category-tag: .5rem .5rem .5rem 0;
 $padding-last: 1.5rem;
 $padding-category-tag: 0 0.3rem;
@@ -35,6 +37,15 @@ body { margin: 0; font-family: 'Montserrat', sans-serif; }
 
 .mat-mdc-dialog-content {
   max-height: none;
+}
+
+.soon-badge{
+  background-color: $color-green-badge;
+  opacity: 0.9;
+  color: white;
+  border-radius: $border-radius-small;
+  padding: 0.1rem 0.3rem;
+  margin: 0.2rem 0.2rem 0 0;
 }
 
 @mixin glass {

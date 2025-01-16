@@ -6,6 +6,7 @@ import { FavoriteCardComponent } from "../../components/favorite-card/favorite-c
 import { CommonModule } from '@angular/common';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ModalService } from '../../services/modal-service/modal.service';
 
 @Component({
   selector: 'app-favorites',
@@ -17,7 +18,8 @@ export class FavoritesComponent {
   favoriteCards: Array<IDiscount> = [];
 
   constructor(private favoritesService: FavoritesService,
-              private toaster: ToasterService) {
+    private toaster: ToasterService,
+    private modalService: ModalService) {
     this.getFavorites();
   }
 
@@ -31,5 +33,16 @@ export class FavoritesComponent {
   getFavoritesAfterDelete(): void {
     this.favoriteCards = [];
     this.getFavorites();
+  }
+
+  openDiscountDetailModal(favoriteCard: any): void {
+    const dialogRef = this.modalService.openDiscountDetailsModal(favoriteCard.id, true, favoriteCard.note);
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.favoriteCards = [];
+        this.getFavorites();
+      }
+    });
   }
 }

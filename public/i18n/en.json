@@ -86,5 +86,19 @@
     "phone-error": "Phone should contain only numbers, only one or no + and only one () or no ()",
     "date-start-required-error": "Start date should not be empty",
     "category-required-error": "Category should not be empty"
+  },
+  "discounts": {
+    "address": "Address",
+    "start": "Starts at",
+    "available": "Available to",
+    "open": "Open",
+    "close": "Close",
+    "cancel": "Cancel",
+    "soon": "soon"
+  },
+    "favorites": {
+    "notes": "Note",
+    "cancel": "Cancel",
+    "save": "Save"
   }
 }

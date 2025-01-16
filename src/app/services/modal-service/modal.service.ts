@@ -5,6 +5,7 @@ import { IVendor } from '../../models/vendor.interface';
 import { AddVendorModalComponent } from '../../pages/moderator/vendors/add-vendor-modal/add-vendor-modal.component';
 import { IDiscount } from '../../models/discount.interface';
 import { AddDiscountModalComponent } from '../../pages/moderator/vendors/add-discount-modal/add-discount-modal.component';
+import { DiscountDetailsModalComponent } from '../../pages/discounts/discount-details-modal/discount-details-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -46,4 +47,18 @@ export class ModalService {
     });
   }
 
+  openDiscountDetailsModal(id: string, isVisibleEditNote?: boolean, note?: string): any {
+    return this.dialog.open(DiscountDetailsModalComponent, {
+      data: {
+        id,
+        isVisibleEditNote,
+        note
+      },
+      maxWidth: '33rem',
+      panelClass: 'discount-details-modal',
+      backdropClass: 'discount-details-modal-backdrop',
+      autoFocus: false,
+      disableClose: true,
+    });
+  }
 }

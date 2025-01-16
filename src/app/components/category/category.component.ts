@@ -1,5 +1,5 @@
 
-import { Component, inject, input, Input, signal, ViewEncapsulation } from '@angular/core';
+import { Component, inject, input, signal, ViewEncapsulation } from '@angular/core';
 import { CategoriesTagsService } from '../../services/categories-tags-service/categories-tags.service';
 import { tap } from 'rxjs';
 
@@ -14,10 +14,15 @@ import { tap } from 'rxjs';
 export class CategoryComponent {
   private readonly categoriesTagsService = inject(CategoriesTagsService);
   categoryId = input<string>('');
+  name = input<string>('');
   public categoryName = signal('');
 
   ngOnInit() {
-    this.getCategoryName();
+    if (!this.name()) {
+      this.getCategoryName();
+    } else {
+      this.categoryName.set(this.name());
+    }
   }
 
   getCategoryName(): void {

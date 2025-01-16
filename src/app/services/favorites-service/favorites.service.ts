@@ -18,7 +18,7 @@ export class FavoritesService {
   }
 
   updateFavorite(discountId: string, note: string): Observable<any> {
-    return this.http.put(`${BASE_API_URL}/favorites`, { discountId, note });
+    return this.http.put(`${BASE_API_URL}/favorites/${discountId}`, { discountId, note });
   }
 
   deleteFavorite(discountId: string): Observable<any> {

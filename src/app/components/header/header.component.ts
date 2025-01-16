@@ -34,6 +34,7 @@ export class HeaderComponent {
 
   tabs!: ITab[];
   userphoto = 'images/user.png';
+  fullName = '';
   userDetails!: IUser;
 
   ngOnInit() {
@@ -58,7 +59,10 @@ export class HeaderComponent {
 
   getUserInfo() {
     this.userService.getUserDetails(JwtHelper.getUserIdFromToken(localStorage.getItem('accessToken')!)).pipe(
-      tap((data) => this.userDetails = data),
+      tap((data) => {
+        this.userDetails = data;
+        this.fullName = data.fullName;
+      }),
     ).subscribe();
   }
 

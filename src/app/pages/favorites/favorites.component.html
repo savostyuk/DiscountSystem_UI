@@ -1,7 +1,6 @@
 <div class="favorites-container">
    <div *ngFor="let card of favoriteCards">
-      <app-favorite-card 
-                     [favoriteInfo]="card"
-                     (updateCardsAfterDelete)="getFavoritesAfterDelete()"></app-favorite-card>
+      <app-favorite-card [discount]="card" (click)="openDiscountDetailModal(card)"
+         (updateCardsAfterDelete)="getFavoritesAfterDelete()"></app-favorite-card>
    </div>
 </div>
