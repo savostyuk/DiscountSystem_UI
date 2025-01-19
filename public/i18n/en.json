@@ -32,6 +32,11 @@
       "message": "Are you sure you want to close the pop-up? Your changes will not be saved",
       "button-positive": "Yes",
       "button-negative": "No"
+    },
+    "delete-account": {
+      "message": "Are you sure you want to delete account? This action will be irreversible",
+      "button-positive": "Delete",
+      "button-negative": "Cancel"
     }
   },
   "vendors": {
@@ -70,11 +75,8 @@
     "admin": "Administrator",
     "user": "User",
     "moderator": "Moderator",
-    "active": "Active",
-    "inactive": "Inactive",
-    "add-profile": {
-      "save": "Save"
-    }
+    "edit": "Edit",
+    "delete": "Delete account"
   },
   "errors": {
     "vendor-name-maxlength-error": "Vendor's name should not be longer than 100 characters",

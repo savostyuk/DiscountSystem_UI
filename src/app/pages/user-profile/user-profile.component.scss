@@ -1,0 +1,128 @@
+@use "../../../styles.scss" as *;
+
+.profile-wrapper {
+    display: flex;
+    flex-direction: row;
+
+    @include glass;
+    border-radius: $border-radius-small;
+    box-shadow: $shadow-gray;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+
+    img {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+    }
+
+    .profile-content {
+        margin-left: 1rem;
+        width: 100%;
+
+        .profile-info {
+            margin-bottom: 0.5rem;
+
+            .profile-username {
+                font-size: 1.8rem;
+                font-weight: bold;
+                margin-bottom: 1rem;
+            }
+
+            .profile-location {
+                font-size: 0.9rem;
+                font-weight: bold;
+
+                div {
+                    margin-bottom: 0.4rem;
+                }
+            }
+        }
+
+        button {
+            line-height: 3.25rem;
+            font-size: 1rem;
+            color: $color-black;
+            vertical-align: top;
+            margin: 8px 8px 0 0;
+        }
+
+        .delete-button {
+            background-color: $color-red;
+            color: $color-white !important;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile-wrapper {
+        flex-direction: column;
+        justify-content: space-between;
+        max-width: 25.5rem;
+
+        .profile-photo {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: $margin-half;
+        }
+
+        .profile-content {
+            max-width: 25rem;
+            margin-left: 0;
+            .profile-username {
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media (max-width: 570px) {
+    .profile-wrapper {
+        max-width: 20rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .profile-wrapper {
+        max-width: 15rem;
+        max-height: 100%;
+
+        img {
+            width: 7.5rem;
+            height: 7.5rem;
+        }
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .profile-wrapper {
+        max-width: 13.5rem;
+
+        .profile-photo {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: $margin-half;
+        }
+
+        .profile-content {
+            max-width: 25rem;
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .profile-wrapper {
+        max-width: 13rem;
+        padding: 1.25rem;
+
+        .profile-content .profile-info .profile-username {
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        img {
+            width: 5rem;
+            height: 5rem;
+        }
+    }
+}

@@ -1,1 +1,19 @@
-<p>user-profile works!</p>
+<div class="profile-wrapper">
+
+    <div class="profile-photo">
+        <img src='images/user.png' alt="UserPhoto" />
+    </div>
+
+    <div class="profile-content">
+        <div class="profile-info">
+            <div class="profile-username">{{user?.fullName}}</div>
+            <div class="profile-location">
+                <div>{{user?.location}}</div>
+                <div>{{user?.email}}</div>
+            </div>
+
+            <button class="edit-button" mat-button>{{ 'users.edit' | translate }}</button>
+            <button class="delete-button" mat-raised-button (click)="deleteAccount()">{{ 'users.delete' | translate }}</button>
+        </div>
+    </div>
+</div>

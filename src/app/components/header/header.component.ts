@@ -35,6 +35,7 @@ export class HeaderComponent {
   tabs!: ITab[];
   userphoto = 'images/user.png';
   fullName = '';
+  location = '';
   userDetails!: IUser;
 
   ngOnInit() {
@@ -62,6 +63,7 @@ export class HeaderComponent {
       tap((data) => {
         this.userDetails = data;
         this.fullName = data.fullName;
+        this.location = data.location;
       }),
     ).subscribe();
   }

@@ -26,6 +26,7 @@ export class RegisterComponent {
   private readonly toaster = inject(ToasterService);
   firstName: string = '';
   lastName: string = '';
+  location: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
@@ -34,7 +35,7 @@ export class RegisterComponent {
 
   register(): void {
     if (this.password === this.confirmPassword) {
-      this.authService.register(this.firstName, this.lastName, this.email, this.password).pipe(
+      this.authService.register(this.firstName, this.lastName, this.location, this.email, this.password).pipe(
         tap((data) => {
           if (data.message) {
             this.toaster.open(data.message);

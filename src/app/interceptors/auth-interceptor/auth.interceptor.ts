@@ -1,12 +1,10 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../../services/auth-service/auth-service.service';
-import { Router } from '@angular/router';
 import { catchError, switchMap, throwError } from 'rxjs';
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
-  const router = inject(Router);
 
   const token = localStorage.getItem('accessToken');
 
@@ -32,7 +30,6 @@ export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
           }),
           catchError((refreshError) => {
             authService.logout();
-            router.navigate(['/login']);
             
             return throwError(() => refreshError);
           })
