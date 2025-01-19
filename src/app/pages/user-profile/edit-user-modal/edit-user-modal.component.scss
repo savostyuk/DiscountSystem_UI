@@ -1,0 +1,74 @@
+@use "../../../../styles.scss" as *;
+
+.edit-profile-modal-backdrop.cdk-overlay-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.edit-profile-modal.cdk-overlay-pane {
+    width: 33rem;
+
+    .edit-profile-header {
+        height: $height-header;
+        padding: 0 $margin-1;
+    
+        .edit-profile-title {
+          @include font-bold-vendor;
+          line-height: $height-header;
+        }
+      }
+
+    .user-profile-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0 $margin-1;
+        height: calc(100% - 4.3rem);
+
+        mat-form-field {
+            width: 100%;
+
+            .mat-form-field-wrapper {
+                padding-bottom: 0;
+                background: rgba(255, 255, 255, 0.7);
+                border-radius: $border-radius-small;
+            }
+        }
+
+        mat-error {
+            margin-top: -0.7rem;
+        }
+
+        .user-profile-fields {
+            padding: 1rem;
+            @include glass;
+            box-shadow: $shadow-gray;
+            border-radius: $border-radius-small;
+
+            .mat-icon-button {
+                border: none;
+                background-color: transparent;
+                color: rgb(156, 154, 154);
+                padding-top: 5px;
+            }
+        }
+    }
+}
+
+.edit-profile-button {
+    text-align: right;
+    font-weight: bold;
+
+    button:not(:last-child) {
+        color: $color-black;
+    }
+
+    button:last-child {
+        @extend .backgroundColor;
+        color: $color-white;
+
+        &:disabled {
+            background-color: rgba(0, 0, 0, .12);
+            color: rgba(0, 0, 0, .26);
+        }
+    }
+}

@@ -4,7 +4,7 @@ import { UsersService } from '../../services/users-service/users.service';
 import { JwtHelper } from '../../helpers/jwt.helper';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
-import { catchError, of, tap } from 'rxjs';
+import { catchError, finalize, of, switchMap, tap } from 'rxjs';
 import { ToasterService } from '../../services/toaster-service/toaster.service';
 import { AuthService } from '../../services/auth-service/auth-service.service';
 import { ModalService } from '../../services/modal-service/modal.service';
@@ -27,12 +27,26 @@ export class UserProfileComponent {
 
   ngOnInit() {
     this.userId = JwtHelper.getUserIdFromToken(localStorage.getItem('accessToken')!);
+    this.getUserDetails();
+  }
+
+  getUserDetails() {
     this.usersService.getUserDetails(this.userId).pipe(
       tap((data) => {
         this.user = data;
       }),
       catchError(() => of(this.toaster.open('Сan not get User Profile')))
     ).subscribe();
+  }
+
+  openEditUserModal() {
+    const dialogRef = this.modalService.openEditUserModal(this.user!);
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.getUserDetails();
+      }
+    });
   }
 
   deleteAccount() {
@@ -44,7 +58,7 @@ export class UserProfileComponent {
     const dialogRef = this.modalService.openConfirmModal(confirmData);
 
     dialogRef.afterClosed().subscribe((isDelete: boolean) => {
-      if(isDelete) {
+      if (isDelete) {
         this.usersService.deleteUser(this.userId).pipe(
           tap(() => {
             this.toaster.open('User Account was deleted successfully.')

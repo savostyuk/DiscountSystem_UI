@@ -1,0 +1,30 @@
+<div mat-dialog-content class="mat-dialog-content">
+
+    <div class="edit-profile-header">
+        <div class="edit-profile-title">{{ ('users.edit-profile' | translate) }}</div>
+    </div>
+
+    <div class="user-profile-info">
+        <div class="user-profile-fields">
+            <mat-form-field appearance="outline">
+                <mat-label>{{ ('users.first-name' | translate) }}</mat-label>
+                <input [(ngModel)]="firstName" matInput required type="text">
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>{{ ('users.last-name' | translate) }}</mat-label>
+                <input [(ngModel)]="lastName" matInput required type="text">
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>{{ ('users.location' | translate) }}</mat-label>
+                <input [(ngModel)]="location" matInput required type="text">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <mat-dialog-actions class="edit-profile-button">
+        <button mat-button (click)="checkChanges()">{{ ('users.cancel' | translate) }}</button>
+        <button mat-raised-button [disabled]="!isChanged()" (click)="updateUser()">{{ ('users.save' | translate) }}</button>
+    </mat-dialog-actions>
+</div>

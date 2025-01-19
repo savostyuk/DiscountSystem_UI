@@ -12,7 +12,7 @@
                 <div>{{user?.email}}</div>
             </div>
 
-            <button class="edit-button" mat-button>{{ 'users.edit' | translate }}</button>
+            <button class="edit-button" mat-button (click)="openEditUserModal()">{{ 'users.edit' | translate }}</button>
             <button class="delete-button" mat-raised-button (click)="deleteAccount()">{{ 'users.delete' | translate }}</button>
         </div>
     </div>

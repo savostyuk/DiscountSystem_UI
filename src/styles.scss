@@ -48,6 +48,12 @@ body { margin: 0; font-family: 'Montserrat', sans-serif; }
   margin: 0.2rem 0.2rem 0 0;
 }
 
+.helper-error-text {
+  color: #BA1A1A;
+  font: 14px Roboto;
+  margin-top: -20px;
+}
+
 @mixin glass {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);

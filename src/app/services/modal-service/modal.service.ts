@@ -6,6 +6,8 @@ import { AddVendorModalComponent } from '../../pages/moderator/vendors/add-vendo
 import { IDiscount } from '../../models/discount.interface';
 import { AddDiscountModalComponent } from '../../pages/moderator/vendors/add-discount-modal/add-discount-modal.component';
 import { DiscountDetailsModalComponent } from '../../pages/discounts/discount-details-modal/discount-details-modal.component';
+import { IUser } from '../../models/user.interface';
+import { EditUserModalComponent } from '../../pages/user-profile/edit-user-modal/edit-user-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +59,19 @@ export class ModalService {
       maxWidth: '33rem',
       panelClass: 'discount-details-modal',
       backdropClass: 'discount-details-modal-backdrop',
+      autoFocus: false,
+      disableClose: true,
+    });
+  }
+
+  openEditUserModal(user: IUser): any {
+    return this.dialog.open(EditUserModalComponent, {
+      data: {
+        user
+      },
+      maxWidth: '33rem',
+      panelClass: 'edit-profile-modal',
+      backdropClass: 'edit-profile-modal-backdrop',
       autoFocus: false,
       disableClose: true,
     });

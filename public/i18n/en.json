@@ -76,7 +76,13 @@
     "user": "User",
     "moderator": "Moderator",
     "edit": "Edit",
-    "delete": "Delete account"
+    "delete": "Delete account",
+    "edit-profile": "Edit profile",
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "location": "Location",
+    "cancel": "Cancel",
+    "save": "Save"
   },
   "errors": {
     "vendor-name-maxlength-error": "Vendor's name should not be longer than 100 characters",
