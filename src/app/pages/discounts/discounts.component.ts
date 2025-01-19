@@ -8,6 +8,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { catchError, of, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../../services/modal-service/modal.service';
+import { GridService } from '../../services/grid-service/grid.service';
 
 @Component({
   selector: 'app-discounts',
@@ -21,10 +22,13 @@ export class DiscountsComponent {
   private readonly discountsService = inject(DiscountsService);
   private readonly toaster = inject(ToasterService);
   private readonly modalService = inject(ModalService);
+  private readonly gridService = inject(GridService);
   discounts: Array<IDiscount> = [];
+  breakpoint: number = 0;
 
   ngOnInit(): void {
     this.getDiscounts();
+    this.breakpoint = this.gridService.getDiscountGrid(window.innerWidth);
   }
 
   getDiscounts(): void {
@@ -40,5 +44,9 @@ export class DiscountsComponent {
       this.discounts = [];
       this.getDiscounts();
     })
+  }
+
+  onResize(event: any): void {
+    this.breakpoint = this.gridService.getDiscountGrid(event.target.innerWidth);
   }
 }
