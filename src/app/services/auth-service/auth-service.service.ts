@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_API_URL } from '../../global';
 import { Router } from '@angular/router';
+import { UsersService } from '../users-service/users.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private readonly http: HttpClient, private router: Router) { }
+  constructor(private readonly http: HttpClient, private router: Router, private userService: UsersService) { }
 
   login(login: string, password: string): Observable<{ token: string; refreshToken: string }> {
     const loginData = {email: login, password};
@@ -26,6 +27,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    this.userService.clearUser();
 
     this.router.navigate(['/login']);
   }

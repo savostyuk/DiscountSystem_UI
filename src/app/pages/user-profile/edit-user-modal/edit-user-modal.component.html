@@ -8,17 +8,17 @@
         <div class="user-profile-fields">
             <mat-form-field appearance="outline">
                 <mat-label>{{ ('users.first-name' | translate) }}</mat-label>
-                <input [(ngModel)]="firstName" matInput required type="text">
+                <input [(ngModel)]="firstName" [maxlength]="100" matInput required type="text">
             </mat-form-field>
     
             <mat-form-field appearance="outline">
                 <mat-label>{{ ('users.last-name' | translate) }}</mat-label>
-                <input [(ngModel)]="lastName" matInput required type="text">
+                <input [(ngModel)]="lastName" [maxlength]="100" matInput required type="text">
             </mat-form-field>
     
             <mat-form-field appearance="outline">
                 <mat-label>{{ ('users.location' | translate) }}</mat-label>
-                <input [(ngModel)]="location" matInput required type="text">
+                <input [(ngModel)]="location" [maxlength]="100" matInput required type="text">
             </mat-form-field>
         </div>
     </div>

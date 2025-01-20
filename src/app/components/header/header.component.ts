@@ -1,4 +1,4 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { Component, computed, inject, ViewEncapsulation } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { HEADER_TABS } from '../../models/tabs';
 import { MatMenuModule } from '@angular/material/menu';
@@ -13,6 +13,7 @@ import { IUser } from '../../models/user.interface';
 import { UsersService } from '../../services/users-service/users.service';
 import { tap } from 'rxjs/operators';
 import { JwtHelper } from '../../helpers/jwt.helper';
+import { AuthService } from '../../services/auth-service/auth-service.service';
 
 @Component({
   selector: 'app-header',
@@ -30,12 +31,19 @@ import { JwtHelper } from '../../helpers/jwt.helper';
 export class HeaderComponent {
   private readonly router = inject(Router);
   private readonly roleService = inject(RoleService);
-  private readonly userService = inject(UsersService);
+  private readonly userService = inject(UsersService);  
+  private readonly authService = inject(AuthService);
 
   tabs!: ITab[];
   userphoto = 'images/user.png';
-  fullName = '';
-  location = '';
+  fullName = computed(() => {
+    const user = this.userService.user();
+    return user ? user.fullName : ''
+  });
+  location = computed(() => {
+    const user = this.userService.user();
+    return user ? user.location : ''
+  });
   userDetails!: IUser;
 
   ngOnInit() {
@@ -62,8 +70,7 @@ export class HeaderComponent {
     this.userService.getUserDetails(JwtHelper.getUserIdFromToken(localStorage.getItem('accessToken')!)).pipe(
       tap((data) => {
         this.userDetails = data;
-        this.fullName = data.fullName;
-        this.location = data.location;
+        this.userService.setUser(data);
       }),
     ).subscribe();
   }
@@ -73,10 +80,7 @@ export class HeaderComponent {
   }
 
   logout(): void {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 
   goToMain(): void {

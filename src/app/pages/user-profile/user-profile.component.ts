@@ -34,6 +34,7 @@ export class UserProfileComponent {
     this.usersService.getUserDetails(this.userId).pipe(
       tap((data) => {
         this.user = data;
+        this.usersService.setUser(data);
       }),
       catchError(() => of(this.toaster.open('Сan not get User Profile')))
     ).subscribe();

@@ -11,17 +11,17 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input [(ngModel)]="firstName" matInput required type="text">
+        <input [(ngModel)]="firstName" [maxlength]="100" matInput required type="text">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Last Name</mat-label>
-        <input [(ngModel)]="lastName" matInput required type="text">
+        <input [(ngModel)]="lastName" [maxlength]="100" matInput required type="text">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Location</mat-label>
-        <input [(ngModel)]="location" matInput required type="text">
+        <input [(ngModel)]="location" [maxlength]="100" matInput required type="text">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
