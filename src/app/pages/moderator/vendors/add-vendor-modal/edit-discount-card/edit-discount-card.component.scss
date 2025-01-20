@@ -85,6 +85,10 @@
   }
 }
 
+.outdated {
+  background-color: #a7a7a7 !important;
+}
+
 @media (max-width: 930px) {
   .edit-discount-category-and-tags {
     flex-direction: column;

@@ -50,6 +50,8 @@
   .add-vendor-discounts {
     .vendors-component {
       margin-top: $margin-1;
+      max-height: 400px;
+      overflow-y: auto;
 
       .edit-discount-card-container {
         @include glass;

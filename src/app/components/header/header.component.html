@@ -4,13 +4,14 @@
     </div>
 
     <nav class='navigation'>
-      <nav mat-tab-nav-bar>
+      <nav mat-tab-nav-bar [tabPanel]="tabPanel">
         @for (tab of tabs; track tab.path) {
         <a class='tab' mat-tab-link [routerLink]="tab.path" routerLinkActive #rla="routerLinkActive"
           [active]="rla.isActive">{{ tab.localizationKey | translate }}
         </a>
         }
       </nav>
+      <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
 
       <div class='person'>
         <div class='person-info'>
