@@ -25,6 +25,9 @@ export class FavoriteCardComponent {
   isFutureDiscount = computed(() => {
     return new Date(this.discount.startDate) > this.dateNow ? true : false
   });
+  isOutdatedDiscount = computed(() => {
+    return new Date(this.discount.endDate!) < this.dateNow ? true : false
+  });
 
   constructor(public dialog: MatDialog,
     private modalService: ModalService,

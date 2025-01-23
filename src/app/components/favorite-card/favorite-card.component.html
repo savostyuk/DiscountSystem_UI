@@ -1,4 +1,4 @@
-<div *ngIf="discount" class="favorite-card">
+<div *ngIf="discount" class="favorite-card"  [ngClass]="{'outdated': isOutdatedDiscount()}">
   <div class="favorite-vendor">
     <div class="favorite-card-title">{{ discount.vendorName }}</div>
   </div>

@@ -125,6 +125,10 @@
   }
 }
 
+.outdated {
+  background-color: #a7a7a7 !important;
+}
+
 @media (max-width: 450px) {
   .favorites-category-and-tags {
     flex-direction: column;
