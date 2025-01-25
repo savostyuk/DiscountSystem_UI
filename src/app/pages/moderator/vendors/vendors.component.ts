@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalService } from '../../../services/modal-service/modal.service';
 import { ToasterService } from '../../../services/toaster-service/toaster.service';
@@ -23,15 +23,14 @@ import { of } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class VendorsComponent {
+  dialog = inject(MatDialog);
+  private modalService = inject(ModalService);
+  private vendorsService = inject(VendorsService);
+  private toaster = inject(ToasterService);
+  private gridService = inject(GridService);
+
   vendors: IVendor[] = [];
   breakpoint: number = 0;
-
-  constructor(public dialog: MatDialog,
-    private modalService: ModalService,
-    private vendorsService: VendorsService,
-    private toaster: ToasterService,
-    private gridService: GridService) {
-  }
 
   ngOnInit(): void {
     this.breakpoint = this.gridService.getDiscountGrid(window.innerWidth);

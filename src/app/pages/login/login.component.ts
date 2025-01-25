@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,13 +21,13 @@ import { ToasterService } from '../../services/toaster-service/toaster.service';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent {
+  private readonly authService = inject(AuthService);
+  private readonly toaster = inject(ToasterService);
+  private readonly router = inject(Router);
+
   hide = true;
   email = '';
   password = '';
-
-  constructor(private readonly authService: AuthService,
-              private readonly toaster: ToasterService,
-              private readonly router: Router) { }
 
   login(): void {
     this.authService.login(this.email, this.password).pipe(

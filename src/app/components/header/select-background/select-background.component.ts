@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 
 import { IBackground, SelectBackgroundService } from '../../../services/select-background-service/select-background.service';
@@ -12,10 +12,14 @@ import { IBackground, SelectBackgroundService } from '../../../services/select-b
   encapsulation: ViewEncapsulation.None
 })
 export class SelectBackgroundComponent implements OnInit {
+  private selectBackgroundService = inject(SelectBackgroundService);
+
   backgrounds: IBackground[];
   activeBackground: IBackground;
 
-  constructor(private selectBackgroundService: SelectBackgroundService) {
+  constructor() {
+    const selectBackgroundService = this.selectBackgroundService;
+
     this.backgrounds = selectBackgroundService.getBackgrounds();
     this.activeBackground = { background: '', colorClass: '' };
   }

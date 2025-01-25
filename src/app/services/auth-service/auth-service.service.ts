@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_API_URL } from '../../global';
 import { Router } from '@angular/router';
@@ -9,8 +9,9 @@ import { UsersService } from '../users-service/users.service';
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(private readonly http: HttpClient, private router: Router, private userService: UsersService) { }
+  private readonly http = inject(HttpClient);
+  private router = inject(Router);
+  private userService = inject(UsersService);
 
   login(login: string, password: string): Observable<{ token: string; refreshToken: string }> {
     const loginData = {email: login, password};

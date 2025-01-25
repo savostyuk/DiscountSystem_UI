@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { forEach } from 'lodash';
 import { ToasterService } from '../../../services/toaster-service/toaster.service';
 import { GridService } from '../../../services/grid-service/grid.service';
@@ -17,29 +17,19 @@ import { MatGridListModule } from '@angular/material/grid-list';
   encapsulation: ViewEncapsulation.None
 })
 export class UsersComponent {
+  private usersService = inject(UsersService);
+  private toaster = inject(ToasterService);
+  private gridService = inject(GridService);
+
 
   users: IUser[] = [];
-  searchData: any = {};
-  topUsers: any;
-  skipUsers: any;
-  previousScrollPosition: any;
-  totalCount: any;
   breakpoint: number;
 
-  constructor(private usersService: UsersService,
-    private toaster: ToasterService,
-    private gridService: GridService) {
-    this.topUsers = 9;
-    this.skipUsers = 0;
-    this.previousScrollPosition = 0;
-    this.totalCount = 0;
+  constructor() {
     this.breakpoint = 0;
   }
 
   ngOnInit(): void {
-    if (history.state.userEmail) {
-      this.searchData.searchUserText = history.state.userEmail;
-    }
     this.getUsersList();
     this.breakpoint = this.gridService.getUserGrid(window.innerWidth);
   }

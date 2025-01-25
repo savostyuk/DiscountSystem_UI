@@ -1,4 +1,4 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { VendorsService } from '../../../../services/vendors-service/vendor.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ModalService } from '../../../../services/modal-service/modal.service';
@@ -25,19 +25,18 @@ import { DiscountsService } from '../../../../services/discounts-service/discoun
   encapsulation: ViewEncapsulation.None
 })
 export class AddVendorModalComponent {
+  vendorsService = inject(VendorsService);
+  dialog = inject(MatDialog);
+  private modalService = inject(ModalService);
+  private toaster = inject(ToasterService);
+  private matDialogRef = inject<MatDialogRef<any>>(MatDialogRef);
+  private translateService = inject(TranslateService);
+  private discountsService = inject(DiscountsService);
+  vendorId = inject<IVendorCard>(MAT_DIALOG_DATA);
+
   vendor: any = {};
   pristineVendor: any = {};
   vendorName = new FormControl('', [Validators.required, Validators.maxLength(100)]);
-
-  constructor(public vendorsService: VendorsService,
-    public dialog: MatDialog,
-    private modalService: ModalService,
-    private toaster: ToasterService,
-    private matDialogRef: MatDialogRef<any>,
-    private translateService: TranslateService,
-    private discountsService: DiscountsService,
-    @Inject(MAT_DIALOG_DATA) public vendorId: IVendorCard
-  ) {}
 
   ngOnInit(): void {
     this.matDialogRef.backdropClick().subscribe(() => {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../components/confirmation-dialog/confirmation-dialog.component';
 import { IVendor } from '../../models/vendor.interface';
@@ -13,8 +13,7 @@ import { EditUserModalComponent } from '../../pages/user-profile/edit-user-modal
   providedIn: 'root'
 })
 export class ModalService {
-
-  constructor(public dialog: MatDialog) { }
+  dialog = inject(MatDialog);
 
   openConfirmModal(data?: any): any {
     return this.dialog.open(ConfirmationDialogComponent, {

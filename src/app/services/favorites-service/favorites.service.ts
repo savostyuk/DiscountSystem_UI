@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_API_URL } from '../../global';
 
@@ -7,7 +7,12 @@ import { BASE_API_URL } from '../../global';
   providedIn: 'root'
 })
 export class FavoritesService {
-  constructor(public http: HttpClient) {}
+  http = inject(HttpClient);
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {}
 
   getFavorites(): Observable<any> {
     return this.http.get(`${BASE_API_URL}/favorites`);

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BASE_API_URL } from '../../global';
 
@@ -7,8 +7,7 @@ import { BASE_API_URL } from '../../global';
   providedIn: 'root'
 })
 export class VendorsService {
-
-  constructor(private readonly http: HttpClient) { }
+  private readonly http = inject(HttpClient);
 
   getVendors(): Observable<any> {
     return this.http.get(`${BASE_API_URL}/vendors`);

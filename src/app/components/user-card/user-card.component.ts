@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, inject } from '@angular/core';
 import { UsersService } from '../../services/users-service/users.service';
 import { ToasterService } from '../../services/toaster-service/toaster.service';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -14,16 +14,12 @@ import { IUser } from '../../models/user.interface';
   encapsulation: ViewEncapsulation.None
 })
 export class UserCardComponent {
+  private usersService = inject(UsersService);
+  private toaster = inject(ToasterService);
+
   @Input() user: IUser | undefined;
 
-  role: string | undefined;
-
-  constructor(
-    private usersService: UsersService,
-    private toaster: ToasterService
-  ) {
-    this.role = '';
-  }
+  role: string | undefined  = '';
 
   ngOnInit(): void {
     this.role = this.user?.role;

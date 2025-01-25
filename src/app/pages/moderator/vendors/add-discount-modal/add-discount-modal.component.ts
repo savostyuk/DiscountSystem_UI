@@ -1,4 +1,4 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { cloneDeep, forEach, isEqual } from 'lodash';
 import { CategoriesTagsService } from '../../../../services/categories-tags-service/categories-tags.service';
@@ -25,19 +25,22 @@ import { MatButtonModule } from '@angular/material/button';
   encapsulation: ViewEncapsulation.None
 })
 export class AddDiscountModalComponent {
+  private categoryService = inject(CategoriesTagsService);
+  private toaster = inject(ToasterService);
+  private matDialogRef = inject<MatDialogRef<any>>(MatDialogRef);
+  private modalService = inject(ModalService);
+  private translateService = inject(TranslateService);
+  data = inject(MAT_DIALOG_DATA);
+
   form: FormGroup;
   discountDetail: IDiscount;
   pristineDiscountDetail: any;
   categoriesAll: any;
   tagsByCategory: any;
 
-  constructor(private categoryService: CategoriesTagsService,
-    private toaster: ToasterService,
-    private matDialogRef: MatDialogRef<any>,
-    private modalService: ModalService,
-    private translateService: TranslateService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.discountDetail = data.discount;
     this.pristineDiscountDetail = cloneDeep(this.discountDetail);
     this.categoriesAll = [];

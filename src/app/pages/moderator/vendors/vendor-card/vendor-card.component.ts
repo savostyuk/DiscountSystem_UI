@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { VendorsService } from '../../../../services/vendors-service/vendor.service';
 import { ModalService } from '../../../../services/modal-service/modal.service';
 import { ToasterService } from '../../../../services/toaster-service/toaster.service';
@@ -14,13 +14,18 @@ import { of } from 'rxjs';
   styleUrl: './vendor-card.component.scss'
 })
 export class VendorCardComponent {
+  vendorsService = inject(VendorsService);
+  private modalService = inject(ModalService);
+  private toaster = inject(ToasterService);
+  private translateService = inject(TranslateService);
+
   @Input() data: any | undefined;
   @Output() updateCardsAfterDelete: EventEmitter<any> = new EventEmitter();
 
-  constructor(public vendorsService: VendorsService,
-              private modalService: ModalService,
-              private toaster: ToasterService,
-              private translateService: TranslateService) {
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {
   }
 
   deleteVendor(): void {

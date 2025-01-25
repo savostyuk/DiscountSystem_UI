@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { FavoritesService } from '../../services/favorites-service/favorites.service';
 import { ToasterService } from '../../services/toaster-service/toaster.service';
 import { catchError, tap } from 'rxjs/operators';
@@ -11,11 +11,11 @@ import { of } from 'rxjs';
   styleUrl: './btn-favorite.component.scss'
 })
 export class BtnFavoriteComponent {
+  favoriteService = inject(FavoritesService);
+  private toaster = inject(ToasterService);
+
   @Input() isFavorite: boolean | undefined;
   @Input() id: string = '';
-
-  constructor(public favoriteService: FavoritesService,
-    private toaster: ToasterService) { }
 
   addFavorite(): void {
     this.favoriteService.addFavorite(this.id).pipe(

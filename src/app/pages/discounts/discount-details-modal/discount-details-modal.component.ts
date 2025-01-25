@@ -1,4 +1,4 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { DiscountsService } from '../../../services/discounts-service/discounts.service';
 import { ToasterService } from '../../../services/toaster-service/toaster.service';
 import { FavoritesService } from '../../../services/favorites-service/favorites.service';
@@ -35,21 +35,21 @@ import { MatInputModule } from '@angular/material/input';
   encapsulation: ViewEncapsulation.None
 })
 export class DiscountDetailsModalComponent {
+  private discountService = inject(DiscountsService);
+  private toaster = inject(ToasterService);
+  private favoriteService = inject(FavoritesService);
+  private modalService = inject(ModalService);
+  private translateService = inject(TranslateService);
+  private matDialogRef = inject<MatDialogRef<any>>(MatDialogRef);
+  data = inject(MAT_DIALOG_DATA);
+
   discountDetails: any;
   discountId: string = '';
   isFutureDiscount: boolean;
   dateNow: Date;
   editingValueControl = new FormControl();
 
-  constructor(
-    private discountService: DiscountsService,
-    private toaster: ToasterService,
-    private favoriteService: FavoritesService,
-    private modalService: ModalService,
-    private translateService: TranslateService,
-    private matDialogRef: MatDialogRef<any>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
+  constructor() {
     this.discountDetails = {
       tags: [],
     };

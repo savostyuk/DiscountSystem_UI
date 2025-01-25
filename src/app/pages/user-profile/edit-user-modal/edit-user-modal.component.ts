@@ -1,4 +1,4 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -21,17 +21,20 @@ import { of } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class EditUserModalComponent {
+  private toaster = inject(ToasterService);
+  private matDialogRef = inject<MatDialogRef<any>>(MatDialogRef);
+  private modalService = inject(ModalService);
+  private translateService = inject(TranslateService);
+  private usersService = inject(UsersService);
+  data = inject(MAT_DIALOG_DATA);
+
   firstName = '';
   lastName = '';
   location = '';
 
-  constructor(private toaster: ToasterService,
-    private matDialogRef: MatDialogRef<any>,
-    private modalService: ModalService,
-    private translateService: TranslateService,
-    private usersService: UsersService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {
+  constructor() {
+    const data = this.data;
+
     this.firstName = data.user.fullName.split(' ')[0];
     this.lastName = data.user.fullName.split(' ')[1];
     this.location = data.user.location;

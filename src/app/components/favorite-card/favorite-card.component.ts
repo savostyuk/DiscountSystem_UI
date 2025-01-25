@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { Component, computed, EventEmitter, Input, Output, ViewEncapsulation, inject } from '@angular/core';
 import { CategoryComponent } from "../category/category.component";
 import { TagComponent } from "../tag/tag.component";
 import { MatDialog } from '@angular/material/dialog';
@@ -19,6 +19,12 @@ import { IDiscount } from '../../models/discount.interface';
   encapsulation: ViewEncapsulation.None
 })
 export class FavoriteCardComponent {
+  dialog = inject(MatDialog);
+  private modalService = inject(ModalService);
+  private favoriteService = inject(FavoritesService);
+  private toaster = inject(ToasterService);
+  private translateService = inject(TranslateService);
+
   @Input() discount!: IDiscount;
   @Output() updateCardsAfterDelete: EventEmitter<any> = new EventEmitter();
   dateNow: Date = new Date();
@@ -28,12 +34,6 @@ export class FavoriteCardComponent {
   isOutdatedDiscount = computed(() => {
     return new Date(this.discount.endDate!) < this.dateNow ? true : false
   });
-
-  constructor(public dialog: MatDialog,
-    private modalService: ModalService,
-    private favoriteService: FavoritesService,
-    private toaster: ToasterService,
-    private translateService: TranslateService) { }
 
   deleteFavorite(): void {
     const confirmData = {

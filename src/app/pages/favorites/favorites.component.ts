@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ToasterService } from '../../services/toaster-service/toaster.service';
 import { IDiscount } from '../../models/discount.interface';
 import { FavoritesService } from '../../services/favorites-service/favorites.service';
@@ -15,11 +15,13 @@ import { ModalService } from '../../services/modal-service/modal.service';
   styleUrl: './favorites.component.scss'
 })
 export class FavoritesComponent {
+  private favoritesService = inject(FavoritesService);
+  private toaster = inject(ToasterService);
+  private modalService = inject(ModalService);
+
   favoriteCards: Array<IDiscount> = [];
 
-  constructor(private favoritesService: FavoritesService,
-    private toaster: ToasterService,
-    private modalService: ModalService) {
+  constructor() {
     this.getFavorites();
   }
 

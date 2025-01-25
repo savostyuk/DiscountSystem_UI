@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, Input, Output } from '@angular/core';
+import { Component, computed, EventEmitter, Input, Output, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalService } from '../../../../../services/modal-service/modal.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,16 +15,16 @@ import { filter, tap } from 'rxjs/operators';
   styleUrl: './edit-discount-card.component.scss'
 })
 export class EditDiscountCardComponent {
+  dialog = inject(MatDialog);
+  private modalService = inject(ModalService);
+  private translateService = inject(TranslateService);
+
   @Input() discountInfo: any;
   @Output() removeDiscountFromVendor: EventEmitter<any> = new EventEmitter();
   dateNow: Date = new Date();
   isOutdatedDiscount = computed(() => {
     return new Date(this.discountInfo.endDate) < this.dateNow ? true : false
   });
-
-  constructor(public dialog: MatDialog,
-    private modalService: ModalService,
-    private translateService: TranslateService) { }
 
   deleteDiscount(): void {
     const confirmData = {
