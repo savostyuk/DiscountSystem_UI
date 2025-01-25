@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, Output, inject, input } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalService } from '../../../../../services/modal-service/modal.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,7 @@ export class EditDiscountCardComponent {
   private translateService = inject(TranslateService);
 
   readonly discountInfo = input<any>();
-  @Output() removeDiscountFromVendor: EventEmitter<any> = new EventEmitter();
+  readonly removeDiscountFromVendor = output();
   dateNow: Date = new Date();
   isOutdatedDiscount = computed(() => {
     return new Date(this.discountInfo().endDate) < this.dateNow ? true : false

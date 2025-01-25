@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewEncapsulation, inject, input } from '@angular/core';
+import { Component, ViewEncapsulation, inject, input, output } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ModalService } from '../../../../services/modal-service/modal.service';
@@ -23,14 +23,14 @@ export class ListInputComponent {
   private modalService = inject(ModalService);
   private translateService = inject(TranslateService);
 
-  readonly label = input<string>();
+  readonly label = input<string>('');
   readonly options = input<any[]>([]);
   readonly addElement = input<any>();
   readonly editElement = input<any>();
   readonly deleteElement = input<any>();
   readonly isDisabled = input<any>();
   readonly activeCategoryId = input<string>();
-  @Output() changeData = new EventEmitter<string>();
+  readonly changeData = output<string>();
 
   newItem: any;
   selectable = true;
@@ -40,9 +40,7 @@ export class ListInputComponent {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor() {
-    this.label = '';
     this.previousName = '';
-    this.options = [];
   }
 
   add(item: string): void {

@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { FavoritesService } from '../../services/favorites-service/favorites.service';
 import { ToasterService } from '../../services/toaster-service/toaster.service';
 import { catchError, tap } from 'rxjs/operators';
@@ -14,8 +14,13 @@ export class BtnFavoriteComponent {
   favoriteService = inject(FavoritesService);
   private toaster = inject(ToasterService);
 
-  readonly isFavorite = input<boolean>();
+  readonly isFavoriteInput = input<boolean>();
+  isFavorite = signal<boolean>(false);
   readonly id = input<string>('');
+
+  constructor() {
+    this.isFavorite.set(this.isFavoriteInput()!);
+  }
 
   addFavorite(): void {
     this.favoriteService.addFavorite(this.id()).pipe(
@@ -36,7 +41,7 @@ export class BtnFavoriteComponent {
   }
 
   changeFavorite(event: Event): void {
-    this.isFavorite = !this.isFavorite();
+    this.isFavorite.set(!this.isFavorite());
     event.stopPropagation();
     this.isFavorite() ? this.addFavorite() : this.deleteFavorite();
   }

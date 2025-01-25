@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, Output, ViewEncapsulation, inject, input } from '@angular/core';
+import { Component, computed, ViewEncapsulation, inject, input, output } from '@angular/core';
 import { CategoryComponent } from "../category/category.component";
 import { TagComponent } from "../tag/tag.component";
 import { MatDialog } from '@angular/material/dialog';
@@ -26,7 +26,7 @@ export class FavoriteCardComponent {
   private translateService = inject(TranslateService);
 
   readonly discount = input.required<IDiscount>();
-  @Output() updateCardsAfterDelete: EventEmitter<any> = new EventEmitter();
+  readonly updateCardsAfterDelete = output();
   dateNow: Date = new Date();
   isFutureDiscount = computed(() => {
     return new Date(this.discount().startDate) > this.dateNow ? true : false

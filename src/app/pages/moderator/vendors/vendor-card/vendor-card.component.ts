@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { VendorsService } from '../../../../services/vendors-service/vendor.service';
 import { ModalService } from '../../../../services/modal-service/modal.service';
 import { ToasterService } from '../../../../services/toaster-service/toaster.service';
@@ -20,7 +20,7 @@ export class VendorCardComponent {
   private translateService = inject(TranslateService);
 
   readonly data = input<any>();
-  @Output() updateCardsAfterDelete: EventEmitter<any> = new EventEmitter();
+  readonly updateCardsAfterDelete = output();
 
   /** Inserted by Angular inject() migration for backwards compatibility */
   constructor(...args: unknown[]);
