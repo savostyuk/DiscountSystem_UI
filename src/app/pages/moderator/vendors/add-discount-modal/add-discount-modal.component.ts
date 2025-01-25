@@ -10,7 +10,7 @@ import { IDiscount } from '../../../../models/discount.interface';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule, MatOptionModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { CommonModule } from '@angular/common';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDateFnsModule } from '@angular/material-date-fns-adapter';
@@ -18,18 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-add-discount-modal',
-  imports: [MatFormFieldModule,
-    TranslateModule,
-    ReactiveFormsModule,
-    MatOptionModule,
-    MatDialogModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    CommonModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatDateFnsModule],
+  imports: [MatFormFieldModule, TranslateModule, ReactiveFormsModule, MatOptionModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatButtonModule, MatSelectModule, MatDateFnsModule],
     providers: [provideNativeDateAdapter()],
   templateUrl: './add-discount-modal.component.html',
   styleUrl: './add-discount-modal.component.scss',

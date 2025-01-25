@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
-import { CommonModule } from '@angular/common';
+
 import { IBackground, SelectBackgroundService } from '../../../services/select-background-service/select-background.service';
 
 @Component({
   selector: 'app-select-background',
   standalone: true,
-  imports: [MatMenuModule, MatMenuTrigger, CommonModule],
+  imports: [MatMenuModule, MatMenuTrigger],
   templateUrl: './select-background.component.html',
   styleUrls: ['./select-background.component.scss'],
   encapsulation: ViewEncapsulation.None

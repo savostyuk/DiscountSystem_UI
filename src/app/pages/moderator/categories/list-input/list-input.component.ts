@@ -4,7 +4,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ModalService } from '../../../../services/modal-service/modal.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,14 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-list-input',
-  imports: [MatFormFieldModule,
-    MatChipsModule,
-    TranslateModule,
-    CommonModule,
-    FormsModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule],
+  imports: [MatFormFieldModule, MatChipsModule, TranslateModule, FormsModule, MatIconModule, MatButtonModule, MatInputModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './list-input.component.html',
   styleUrl: './list-input.component.scss',

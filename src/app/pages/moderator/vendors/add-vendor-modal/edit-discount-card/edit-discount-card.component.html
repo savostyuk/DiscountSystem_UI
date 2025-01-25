@@ -1,26 +1,27 @@
 <div class="edit-discount-card-container" [ngClass]="{'outdated': isOutdatedDiscount()}">
-    <div class="card-content">
-      <div class="discount-info">
-        <div class="edit-discount-category-and-tags">
-          <div class="edit-discount-category">
-            <app-category [categoryId]="discountInfo.categoryId"></app-category>
-          </div>
-  
-          <div class="edit-discount-tags">
-            <app-tag *ngFor="let tag of discountInfo.tags" [tagId]="tag"></app-tag>
-          </div>
+  <div class="card-content">
+    <div class="discount-info">
+      <div class="edit-discount-category-and-tags">
+        <div class="edit-discount-category">
+          <app-category [categoryId]="discountInfo.categoryId"></app-category>
         </div>
-  
-        <div class="card-content-description">
-          <div class="discount-name line-clamp">
-            {{ discountInfo.condition }}
-          </div>
+
+        <div class="edit-discount-tags">
+          @for (tag of discountInfo.tags; track tag) {
+            <app-tag [tagId]="tag"></app-tag>
+          }
         </div>
       </div>
-  
-      <div class="card-actions" (click)="$event.stopPropagation()">
-        <span class="material-icons warn-color" (click)="deleteDiscount()">delete</span>
+
+      <div class="card-content-description">
+        <div class="discount-name line-clamp">
+          {{ discountInfo.condition }}
+        </div>
       </div>
     </div>
+
+    <div class="card-actions" (click)="$event.stopPropagation()">
+      <span class="material-icons warn-color" (click)="deleteDiscount()">delete</span>
+    </div>
   </div>
-  
+</div>

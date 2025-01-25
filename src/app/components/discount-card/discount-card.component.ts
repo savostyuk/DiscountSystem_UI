@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, Input, signal, ViewEncapsulation } from '@angular/core';
 import { CategoryComponent } from "../category/category.component";
 import { TagComponent } from "../tag/tag.component";
@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-discount-card',
   standalone: true,
-  imports: [CommonModule, CategoryComponent, TagComponent, MatIconModule, BtnFavoriteComponent, TranslateModule],
+  imports: [CategoryComponent, TagComponent, MatIconModule, BtnFavoriteComponent, TranslateModule],
   templateUrl: './discount-card.component.html',
   styleUrl: './discount-card.component.scss',
   encapsulation: ViewEncapsulation.None

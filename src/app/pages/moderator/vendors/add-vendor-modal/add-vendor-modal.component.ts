@@ -10,7 +10,7 @@ import { IDiscount } from '../../../../models/discount.interface';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EditDiscountCardComponent } from "./edit-discount-card/edit-discount-card.component";
 import { IVendorCard } from '../../../../models/vendor-card.interface';
-import { CommonModule } from '@angular/common';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { catchError, finalize, tap } from 'rxjs/operators';
@@ -19,15 +19,7 @@ import { DiscountsService } from '../../../../services/discounts-service/discoun
 
 @Component({
   selector: 'app-add-vendor-modal',
-  imports: [TranslateModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    EditDiscountCardComponent,
-    CommonModule,
-    MatInputModule,
-    MatButtonModule],
+  imports: [TranslateModule, FormsModule, MatFormFieldModule, MatDialogModule, ReactiveFormsModule, EditDiscountCardComponent, MatInputModule, MatButtonModule],
   templateUrl: './add-vendor-modal.component.html',
   styleUrl: './add-vendor-modal.component.scss',
   encapsulation: ViewEncapsulation.None

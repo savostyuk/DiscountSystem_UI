@@ -9,7 +9,7 @@ import { IVendor } from '../../../models/vendor.interface';
 import { VendorCardComponent } from "./vendor-card/vendor-card.component";
 import { AddVendorCardComponent } from "./add-vendor-card/add-vendor-card.component";
 import { MatGridListModule } from '@angular/material/grid-list';
-import { CommonModule } from '@angular/common';
+
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -17,7 +17,7 @@ import { of } from 'rxjs';
 @Component({
   selector: 'app-vendors',
   standalone: true,
-  imports: [VendorCardComponent, AddVendorCardComponent, MatGridListModule, CommonModule],
+  imports: [VendorCardComponent, AddVendorCardComponent, MatGridListModule],
   templateUrl: './vendors.component.html',
   styleUrl: './vendors.component.scss',
   encapsulation: ViewEncapsulation.None

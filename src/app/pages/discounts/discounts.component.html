@@ -1,5 +1,7 @@
 <mat-grid-list [cols]="breakpoint" rowHeight="11rem" gutterSize="1rem" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let discount of discounts">
-    <app-discount-card [discount]="discount" (click)="openDiscountDetails(discount)"></app-discount-card>
-  </mat-grid-tile>
+  @for (discount of discounts; track discount) {
+    <mat-grid-tile>
+      <app-discount-card [discount]="discount" (click)="openDiscountDetails(discount)"></app-discount-card>
+    </mat-grid-tile>
+  }
 </mat-grid-list>

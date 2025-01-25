@@ -1,8 +1,10 @@
 <div mat-button class="select-background-menu" [style.background]="activeBackground.background"
-     [matMenuTriggerFor]="beforeMenu">
+  [matMenuTriggerFor]="beforeMenu">
 </div>
 <mat-menu class="menu-items" #beforeMenu="matMenu" xPosition="before">
-     <div mat-menu-item class="background-select-option" [style.background]="item.background"
-          (click)="changeBackground(item)" *ngFor="let item of backgrounds">
-     </div>
+  @for (item of backgrounds; track item) {
+    <div mat-menu-item class="background-select-option" [style.background]="item.background"
+      (click)="changeBackground(item)">
+    </div>
+  }
 </mat-menu>

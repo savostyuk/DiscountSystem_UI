@@ -2,7 +2,9 @@
   <div class="discount-card-header">
     <div class="discount-card-title">{{discount.vendorName}}</div>
 
-    <div *ngIf="isFutureDiscount()" class="soon-badge">{{ 'discounts.soon' | translate }}</div>
+    @if (isFutureDiscount()) {
+      <div class="soon-badge">{{ 'discounts.soon' | translate }}</div>
+    }
 
     <app-btn-favorite [isFavorite]="discount.isFavorite" [id]="discount.id" class="btn"></app-btn-favorite>
   </div>
@@ -10,11 +12,15 @@
   <div class="discount-card-content">
     <div class="category-and-tags">
       <app-category [categoryId]="discount.categoryId" [name]="discount.categoryName"></app-category>
-      <app-tag *ngIf="discount.tags.length" [tagId]="discount.tags[0]"></app-tag>
-      <div *ngIf="discount.tags.length - 1 > 0" class="additional-tags">
-        <span class="material-icons">add_circle</span>
-        {{ discount.tags.length - 1 }}
-      </div>
+      @if (discount.tags.length) {
+        <app-tag [tagId]="discount.tags[0]"></app-tag>
+      }
+      @if (discount.tags.length - 1 > 0) {
+        <div class="additional-tags">
+          <span class="material-icons">add_circle</span>
+          {{ discount.tags.length - 1 }}
+        </div>
+      }
     </div>
 
     <div class="discount-card-content-description">

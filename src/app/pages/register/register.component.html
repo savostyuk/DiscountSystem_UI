@@ -45,9 +45,11 @@
         </button>
       </mat-form-field>
 
-      <mat-error *ngIf="password !== confirmPassword && confirmPassword" class="helper-error-text">
-        Passwords do not match.
-      </mat-error>
+      @if (password !== confirmPassword && confirmPassword) {
+        <mat-error class="helper-error-text">
+          Passwords do not match.
+        </mat-error>
+      }
 
       <div class="register-button">
         <button mat-raised-button color="primary"

@@ -6,12 +6,12 @@ import { IUser } from '../../../models/user.interface';
 import { UsersService } from '../../../services/users-service/users.service';
 import { UserCardComponent } from "../../../components/user-card/user-card.component";
 import { MatGridListModule } from '@angular/material/grid-list';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [UserCardComponent, MatGridListModule, CommonModule],
+  imports: [UserCardComponent, MatGridListModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
   encapsulation: ViewEncapsulation.None

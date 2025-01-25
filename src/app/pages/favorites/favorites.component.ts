@@ -3,14 +3,14 @@ import { ToasterService } from '../../services/toaster-service/toaster.service';
 import { IDiscount } from '../../models/discount.interface';
 import { FavoritesService } from '../../services/favorites-service/favorites.service';
 import { FavoriteCardComponent } from "../../components/favorite-card/favorite-card.component";
-import { CommonModule } from '@angular/common';
+
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ModalService } from '../../services/modal-service/modal.service';
 
 @Component({
   selector: 'app-favorites',
-  imports: [FavoriteCardComponent, CommonModule],
+  imports: [FavoriteCardComponent],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss'
 })

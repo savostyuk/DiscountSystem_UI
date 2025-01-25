@@ -1,9 +1,11 @@
 <div class="users-list">
 
-    <mat-grid-list [cols]="breakpoint" rowHeight="19rem" gutterSize="1rem" (window:resize)="onResize($event)">
-        <mat-grid-tile *ngFor="let user of users">
-            <app-user-card [user]="user">
-            </app-user-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+  <mat-grid-list [cols]="breakpoint" rowHeight="19rem" gutterSize="1rem" (window:resize)="onResize($event)">
+    @for (user of users; track user) {
+      <mat-grid-tile>
+        <app-user-card [user]="user">
+        </app-user-card>
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
 </div>

@@ -6,14 +6,14 @@ import { IDiscount } from '../../models/discount.interface';
 import { DiscountCardComponent } from '../../components/discount-card/discount-card.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { catchError, of, tap } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 import { ModalService } from '../../services/modal-service/modal.service';
 import { GridService } from '../../services/grid-service/grid.service';
 
 @Component({
   selector: 'app-discounts',
   standalone: true,
-  imports: [DiscountCardComponent, MatGridListModule, CommonModule],
+  imports: [DiscountCardComponent, MatGridListModule],
   templateUrl: './discounts.component.html',
   styleUrl: './discounts.component.scss'
 })

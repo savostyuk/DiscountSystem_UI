@@ -1,13 +1,14 @@
 <div>
-    <mat-grid-list [cols]="breakpoint" rowHeight="8.82rem" gutterSize="1rem" (window:resize)="onResize($event)">
+  <mat-grid-list [cols]="breakpoint" rowHeight="8.82rem" gutterSize="1rem" (window:resize)="onResize($event)">
+    <mat-grid-tile>
+      <app-add-vendor-card (click)="openVendorModal()"></app-add-vendor-card>
+    </mat-grid-tile>
+
+    @for (item of vendors; track item) {
       <mat-grid-tile>
-        <app-add-vendor-card (click)="openVendorModal()"></app-add-vendor-card>
-      </mat-grid-tile>
-  
-      <mat-grid-tile *ngFor="let item of vendors">
         <app-vendor-card [data]="item" (click)="openVendorModal(item)"
-          (updateCardsAfterDelete)="getAllVendorsAfterDelete()"></app-vendor-card>
+        (updateCardsAfterDelete)="getAllVendorsAfterDelete()"></app-vendor-card>
       </mat-grid-tile>
-    </mat-grid-list>
-  </div>
-  
+    }
+  </mat-grid-list>
+</div>

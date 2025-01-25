@@ -3,13 +3,13 @@ import { VendorsService } from '../../../../services/vendors-service/vendor.serv
 import { ModalService } from '../../../../services/modal-service/modal.service';
 import { ToasterService } from '../../../../services/toaster-service/toaster.service';
 import { TranslateService } from '@ngx-translate/core';
-import { CommonModule } from '@angular/common';
+
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Component({
   selector: 'app-vendor-card',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './vendor-card.component.html',
   styleUrl: './vendor-card.component.scss'
 })

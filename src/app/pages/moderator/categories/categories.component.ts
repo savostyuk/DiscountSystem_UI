@@ -9,21 +9,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ListInputComponent } from "./list-input/list-input.component";
 import { FormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
-import { CommonModule } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { catchError, of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
-  imports: [TranslateModule,
-    MatFormFieldModule,
-    ListInputComponent,
-    FormsModule,
-    MatOptionModule,
-    CommonModule,
-    MatIconModule,
-    MatSelectModule],
+  imports: [TranslateModule, MatFormFieldModule, ListInputComponent, FormsModule, MatOptionModule, MatIconModule, MatSelectModule],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',
   encapsulation: ViewEncapsulation.None

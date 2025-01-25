@@ -8,21 +8,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
+
 import { UsersService } from '../../../services/users-service/users.service';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Component({
   selector: 'app-edit-user-modal',
-  imports: [TranslateModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    FormsModule,
-    CommonModule],
+  imports: [TranslateModule, MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, FormsModule],
   templateUrl: './edit-user-modal.component.html',
   styleUrl: './edit-user-modal.component.scss',
   encapsulation: ViewEncapsulation.None

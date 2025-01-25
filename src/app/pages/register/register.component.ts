@@ -4,18 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { CommonModule } from '@angular/common';
+
 import { AuthService } from '../../services/auth-service/auth-service.service';
 import { catchError, of, tap } from 'rxjs';
 import { ToasterService } from '../../services/toaster-service/toaster.service';
 
 @Component({
   selector: 'app-register',
-  imports: [MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    FormsModule,
-    CommonModule],
+  imports: [MatFormFieldModule, MatInputModule, MatIconModule, FormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   encapsulation: ViewEncapsulation.None

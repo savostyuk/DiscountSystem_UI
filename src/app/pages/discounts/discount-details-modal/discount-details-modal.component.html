@@ -1,77 +1,99 @@
 <div mat-dialog-content class="mat-dialog-content">
-    <div class="discount-details-wrapper">
-        <div class="discount-details-header">
-            <div class="discount-detail-title">{{ discountDetails.vendorName }}</div>
+  <div class="discount-details-wrapper">
+    <div class="discount-details-header">
+      <div class="discount-detail-title">{{ discountDetails.vendorName }}</div>
 
-            <div *ngIf="isFutureDiscount" class="soon-badge">{{ 'discounts.soon' | translate }}</div>
+      @if (isFutureDiscount) {
+        <div class="soon-badge">{{ 'discounts.soon' | translate }}</div>
+      }
 
-            <app-btn-favorite [isFavorite]="discountDetails.isFavorite" [id]="discountDetails.id"
-                class="discount-detail-favorite"></app-btn-favorite>
-        </div>
-
-        <div class="discount-details-info">
-            <div class="discount-detail-promo-code">{{ discountDetails.promocode }}</div>
-
-            <div class="category-and-tags">
-                <app-category *ngIf="discountDetails.categoryId" [categoryId]="discountDetails.categoryId"
-                    [name]="discountDetails.categoryName"></app-category>
-                <div *ngIf="discountDetails.tags.length" class="tags">
-                    <app-tag *ngFor="let tag of discountDetails.tags" [tagId]="tag"></app-tag>
-                </div>
-            </div>
-
-            <div class="discount-detail-description">{{ discountDetails.condition }}</div>
-
-            <div class="modal-contacts">
-                <div *ngIf="discountDetails.website">
-                    <a href="{{ discountDetails.website }}" target="_blank">
-                        <span class="material-icons">language</span>
-                        <span>{{ discountDetails.website }}</span>
-                    </a>
-                </div>
-
-                <div *ngIf="discountDetails.phone">
-                    <span class="material-icons">phone</span>
-                    <span>{{ 'discounts.open' | translate }}: {{ discountDetails.phone }}</span>
-                </div>
-
-                <div *ngIf="discountDetails.workingHours">
-                    <span class="material-icons">query_builder</span>
-                    <span>{{ 'discounts.open' | translate }}: {{ discountDetails.workingHours }}</span>
-                </div>
-
-                <div>
-                    <span class="material-icons">calendar_today</span>
-                    <span>{{ 'discounts.start' | translate }} {{ discountDetails.startDate | date: 'dd/MM/yyyy'
-                        }}</span>
-                </div>
-
-                <div *ngIf="discountDetails.endDate">
-                    <span class="material-icons">outlined_flag</span>
-                    <span>{{ 'discounts.available' | translate }} {{ discountDetails.endDate | date: 'dd/MM/yyyy'
-                        }}</span>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="data.isVisibleEditNote" class="edit-note-favorites">
-            <mat-form-field appearance="outline">
-                <mat-label>{{ 'favorites.notes' | translate }}</mat-label>
-                <textarea matInput [formControl]="editingValueControl" (keydown.enter)="submitEditNote()"></textarea>
-            </mat-form-field>
-            <mat-error *ngIf="editingValueControl.hasError('maxlength')" class="helper-error-text">
-                {{ 'errors.discount-note-error' | translate }}
-            </mat-error>
-        </div>
-
-        <div class="discount-details-buttons">
-            <button mat-button (click)="checkChanges()" [disabled]="!discountDetails">
-                {{ (data.isVisibleEditNote)
-                ? ('discounts.cancel' | translate)
-                : ('discounts.close' | translate) }}</button>
-            <button *ngIf="data.isVisibleEditNote" class="btn-submit" mat-raised-button
-                [disabled]="canNotBeSaved() || editingValueControl.invalid" (click)="submitEditNote()">
-                {{ 'favorites.save' | translate }}</button>
-        </div>
+      <app-btn-favorite [isFavorite]="discountDetails.isFavorite" [id]="discountDetails.id"
+      class="discount-detail-favorite"></app-btn-favorite>
     </div>
+
+    <div class="discount-details-info">
+      <div class="discount-detail-promo-code">{{ discountDetails.promocode }}</div>
+
+      <div class="category-and-tags">
+        @if (discountDetails.categoryId) {
+          <app-category [categoryId]="discountDetails.categoryId"
+          [name]="discountDetails.categoryName"></app-category>
+        }
+        @if (discountDetails.tags.length) {
+          <div class="tags">
+            @for (tag of discountDetails.tags; track tag) {
+              <app-tag [tagId]="tag"></app-tag>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="discount-detail-description">{{ discountDetails.condition }}</div>
+
+      <div class="modal-contacts">
+        @if (discountDetails.website) {
+          <div>
+            <a href="{{ discountDetails.website }}" target="_blank">
+              <span class="material-icons">language</span>
+              <span>{{ discountDetails.website }}</span>
+            </a>
+          </div>
+        }
+
+        @if (discountDetails.phone) {
+          <div>
+            <span class="material-icons">phone</span>
+            <span>{{ 'discounts.open' | translate }}: {{ discountDetails.phone }}</span>
+          </div>
+        }
+
+        @if (discountDetails.workingHours) {
+          <div>
+            <span class="material-icons">query_builder</span>
+            <span>{{ 'discounts.open' | translate }}: {{ discountDetails.workingHours }}</span>
+          </div>
+        }
+
+        <div>
+          <span class="material-icons">calendar_today</span>
+          <span>{{ 'discounts.start' | translate }} {{ discountDetails.startDate | date: 'dd/MM/yyyy'
+          }}</span>
+        </div>
+
+        @if (discountDetails.endDate) {
+          <div>
+            <span class="material-icons">outlined_flag</span>
+            <span>{{ 'discounts.available' | translate }} {{ discountDetails.endDate | date: 'dd/MM/yyyy'
+            }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    @if (data.isVisibleEditNote) {
+      <div class="edit-note-favorites">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'favorites.notes' | translate }}</mat-label>
+          <textarea matInput [formControl]="editingValueControl" (keydown.enter)="submitEditNote()"></textarea>
+        </mat-form-field>
+        @if (editingValueControl.hasError('maxlength')) {
+          <mat-error class="helper-error-text">
+            {{ 'errors.discount-note-error' | translate }}
+          </mat-error>
+        }
+      </div>
+    }
+
+    <div class="discount-details-buttons">
+      <button mat-button (click)="checkChanges()" [disabled]="!discountDetails">
+        {{ (data.isVisibleEditNote)
+        ? ('discounts.cancel' | translate)
+      : ('discounts.close' | translate) }}</button>
+      @if (data.isVisibleEditNote) {
+        <button class="btn-submit" mat-raised-button
+          [disabled]="canNotBeSaved() || editingValueControl.invalid" (click)="submitEditNote()">
+        {{ 'favorites.save' | translate }}</button>
+      }
+    </div>
+  </div>
 </div>
