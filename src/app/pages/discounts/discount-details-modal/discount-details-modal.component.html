@@ -6,9 +6,10 @@
       @if (isFutureDiscount) {
         <div class="soon-badge">{{ 'discounts.soon' | translate }}</div>
       }
-
-      <app-btn-favorite [isFavorite]="discountDetails.isFavorite" [id]="discountDetails.id"
-      class="discount-detail-favorite"></app-btn-favorite>
+      @if(discountDetails.id) {
+        <app-btn-favorite [isFavorite]="discountDetails.isFavorite" [id]="discountDetails.id"
+        class="discount-detail-favorite"></app-btn-favorite>
+      }
     </div>
 
     <div class="discount-details-info">

@@ -14,12 +14,13 @@ export class BtnFavoriteComponent {
   favoriteService = inject(FavoritesService);
   private toaster = inject(ToasterService);
 
-  readonly isFavoriteInput = input<boolean>();
-  isFavorite = signal<boolean>(false);
+  readonly isFavorite = input<boolean>();
   readonly id = input<string>('');
 
-  constructor() {
-    this.isFavorite.set(this.isFavoriteInput()!);
+  favorite = signal<boolean>(false);
+
+  ngOnInit() {
+    this.favorite.set(this.isFavorite()!);
   }
 
   addFavorite(): void {
@@ -41,8 +42,8 @@ export class BtnFavoriteComponent {
   }
 
   changeFavorite(event: Event): void {
-    this.isFavorite.set(!this.isFavorite());
+    this.favorite() ? this.favorite.set(false) : this.favorite.set(true);
     event.stopPropagation();
-    this.isFavorite() ? this.addFavorite() : this.deleteFavorite();
+    this.favorite() ? this.addFavorite() : this.deleteFavorite();
   }
 }
