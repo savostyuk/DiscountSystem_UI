@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { BASE_API_URL } from '../../global';
 import { Observable } from 'rxjs';
 import { IUser } from '../../models/user.interface';
@@ -8,6 +8,7 @@ import { IUser } from '../../models/user.interface';
   providedIn: 'root'
 })
 export class UsersService {
+  private readonly http = inject(HttpClient);
   private readonly currentUser = signal<IUser | null>(null);
 
   get user() {
@@ -21,8 +22,6 @@ export class UsersService {
   clearUser(): void {
     this.currentUser.set(null);
   }
-
-  constructor(private readonly http: HttpClient) { }
 
   getUsers(): Observable<any> {
     return this.http.get(`${BASE_API_URL}/users`);

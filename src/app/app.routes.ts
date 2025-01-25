@@ -14,6 +14,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { roleGuard } from './guards/role-guard/role.guard';
 import { authGuard } from './guards/auth-guard/auth.guard';
 import { RegisterComponent } from './pages/register/register.component';
+import { EventHistoryComponent } from './pages/admin/event-history/event-history.component';
 
 export const routes: Routes = [
   {
@@ -48,7 +49,7 @@ export const routes: Routes = [
         children: [
           { path: '', redirectTo: '/admin/users', pathMatch: 'full' },
           { path: 'users', component: UsersComponent },
-          { path: 'event-history', component: UsersComponent },
+          { path: 'event-history', component: EventHistoryComponent },
         ],
       }
     ]
