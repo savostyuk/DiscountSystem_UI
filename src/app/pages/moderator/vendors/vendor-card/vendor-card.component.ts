@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject, input } from '@angular/core';
 import { VendorsService } from '../../../../services/vendors-service/vendor.service';
 import { ModalService } from '../../../../services/modal-service/modal.service';
 import { ToasterService } from '../../../../services/toaster-service/toaster.service';
@@ -19,7 +19,7 @@ export class VendorCardComponent {
   private toaster = inject(ToasterService);
   private translateService = inject(TranslateService);
 
-  @Input() data: any | undefined;
+  readonly data = input<any>();
   @Output() updateCardsAfterDelete: EventEmitter<any> = new EventEmitter();
 
   /** Inserted by Angular inject() migration for backwards compatibility */
@@ -38,7 +38,7 @@ export class VendorCardComponent {
 
     dialogRef.afterClosed().subscribe((isDelete: boolean) => {
       if (isDelete) {
-        this.vendorsService.deleteVendor(this.data.id).pipe(
+        this.vendorsService.deleteVendor(this.data().id).pipe(
           tap(() => {
             this.updateCardsAfterDelete.emit();
             this.toaster.open('Information about vendor has been removed', 'success');

@@ -3,11 +3,11 @@
     <div class="discount-info">
       <div class="edit-discount-category-and-tags">
         <div class="edit-discount-category">
-          <app-category [categoryId]="discountInfo.categoryId"></app-category>
+          <app-category [categoryId]="discountInfo().categoryId"></app-category>
         </div>
 
         <div class="edit-discount-tags">
-          @for (tag of discountInfo.tags; track tag) {
+          @for (tag of discountInfo().tags; track tag) {
             <app-tag [tagId]="tag"></app-tag>
           }
         </div>
@@ -15,7 +15,7 @@
 
       <div class="card-content-description">
         <div class="discount-name line-clamp">
-          {{ discountInfo.condition }}
+          {{ discountInfo().condition }}
         </div>
       </div>
     </div>

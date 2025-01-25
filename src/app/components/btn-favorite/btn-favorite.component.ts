@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { FavoritesService } from '../../services/favorites-service/favorites.service';
 import { ToasterService } from '../../services/toaster-service/toaster.service';
 import { catchError, tap } from 'rxjs/operators';
@@ -14,11 +14,11 @@ export class BtnFavoriteComponent {
   favoriteService = inject(FavoritesService);
   private toaster = inject(ToasterService);
 
-  @Input() isFavorite: boolean | undefined;
-  @Input() id: string = '';
+  readonly isFavorite = input<boolean>();
+  readonly id = input<string>('');
 
   addFavorite(): void {
-    this.favoriteService.addFavorite(this.id).pipe(
+    this.favoriteService.addFavorite(this.id()).pipe(
       tap(() => {
         this.toaster.open('Discount has been added to favorites', 'success');
       }),
@@ -27,7 +27,7 @@ export class BtnFavoriteComponent {
   }
 
   deleteFavorite(): void {
-    this.favoriteService.deleteFavorite(this.id).pipe(
+    this.favoriteService.deleteFavorite(this.id()).pipe(
       tap(() => {
         this.toaster.open('Discount has been removed from favorites', 'success');
       }),
@@ -36,8 +36,8 @@ export class BtnFavoriteComponent {
   }
 
   changeFavorite(event: Event): void {
-    this.isFavorite = !this.isFavorite;
+    this.isFavorite = !this.isFavorite();
     event.stopPropagation();
-    this.isFavorite ? this.addFavorite() : this.deleteFavorite();
+    this.isFavorite() ? this.addFavorite() : this.deleteFavorite();
   }
 }

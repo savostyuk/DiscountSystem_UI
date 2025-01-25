@@ -1,20 +1,20 @@
-@if (discount) {
+@if (discount()) {
   <div class="favorite-card"  [ngClass]="{'outdated': isOutdatedDiscount()}">
     <div class="favorite-vendor">
-      <div class="favorite-card-title">{{ discount.vendorName }}</div>
+      <div class="favorite-card-title">{{ discount().vendorName }}</div>
     </div>
     <div class="favorite-card-content">
       <div class="favorite-info">
         <div class="favorites-category-and-tags">
-          <app-category class="favorites-category" [categoryId]="discount.categoryId"></app-category>
+          <app-category class="favorites-category" [categoryId]="discount().categoryId"></app-category>
           <div class="favorites-tags">
-            @for (tag of discount.tags; track tag) {
+            @for (tag of discount().tags; track tag) {
               <app-tag [tagId]="tag"></app-tag>
             }
           </div>
         </div>
-        <div class="discount-name line-clamp">{{ discount.condition }}</div>
-        <div class="favorite-note line-clamp">{{ discount.note }}</div>
+        <div class="discount-name line-clamp">{{ discount().condition }}</div>
+        <div class="favorite-note line-clamp">{{ discount().note }}</div>
       </div>
     </div>
     <div class="favorite-card-actions">

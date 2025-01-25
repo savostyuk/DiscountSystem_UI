@@ -1,4 +1,4 @@
-import { Component, Input, signal, inject } from '@angular/core';
+import { Component, signal, inject, input } from '@angular/core';
 import { CategoriesTagsService } from '../../services/categories-tags-service/categories-tags.service';
 import { tap } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { tap } from 'rxjs';
 export class TagComponent {
   private categoryService = inject(CategoriesTagsService);
 
-  @Input() tagId?: string | undefined;
+  readonly tagId = input<string>();
   tagName = signal('');
 
   ngOnInit() {
@@ -19,7 +19,7 @@ export class TagComponent {
   }
 
   getTagName(): void {
-    this.categoryService.getTagById(this.tagId).pipe(
+    this.categoryService.getTagById(this.tagId()).pipe(
       tap((data) => this.tagName.set(data.tagName))
     ).subscribe();
   }

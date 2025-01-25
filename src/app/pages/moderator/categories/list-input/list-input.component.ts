@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewEncapsulation, inject } from '@angular/core';
+import { Component, EventEmitter, Output, ViewEncapsulation, inject, input } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ModalService } from '../../../../services/modal-service/modal.service';
@@ -23,13 +23,13 @@ export class ListInputComponent {
   private modalService = inject(ModalService);
   private translateService = inject(TranslateService);
 
-  @Input() label: string;
-  @Input() options: any[] = [];
-  @Input() addElement: any;
-  @Input() editElement: any;
-  @Input() deleteElement: any;
-  @Input() isDisabled?: any;
-  @Input() activeCategoryId?: string;
+  readonly label = input<string>();
+  readonly options = input<any[]>([]);
+  readonly addElement = input<any>();
+  readonly editElement = input<any>();
+  readonly deleteElement = input<any>();
+  readonly isDisabled = input<any>();
+  readonly activeCategoryId = input<string>();
   @Output() changeData = new EventEmitter<string>();
 
   newItem: any;
@@ -46,7 +46,7 @@ export class ListInputComponent {
   }
 
   add(item: string): void {
-    this.addElement(item, this.changeData);
+    this.addElement()(item, this.changeData);
     this.newItem = '';
   }
 
@@ -66,7 +66,7 @@ export class ListInputComponent {
       item.isChanged = false;
       this.previousName = '';
     } else {
-      this.editElement(item, this.changeData);
+      this.editElement()(item, this.changeData);
     }
   }
 
@@ -80,7 +80,7 @@ export class ListInputComponent {
 
     dialogRef.afterClosed().subscribe((isDelete: any) => {
       if (isDelete) {
-        this.deleteElement(item.id, this.changeData);
+        this.deleteElement()(item.id, this.changeData);
       }
     });
   }

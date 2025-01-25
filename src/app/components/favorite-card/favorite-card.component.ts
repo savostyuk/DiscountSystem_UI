@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, Input, Output, ViewEncapsulation, inject } from '@angular/core';
+import { Component, computed, EventEmitter, Output, ViewEncapsulation, inject, input } from '@angular/core';
 import { CategoryComponent } from "../category/category.component";
 import { TagComponent } from "../tag/tag.component";
 import { MatDialog } from '@angular/material/dialog';
@@ -25,14 +25,14 @@ export class FavoriteCardComponent {
   private toaster = inject(ToasterService);
   private translateService = inject(TranslateService);
 
-  @Input() discount!: IDiscount;
+  readonly discount = input.required<IDiscount>();
   @Output() updateCardsAfterDelete: EventEmitter<any> = new EventEmitter();
   dateNow: Date = new Date();
   isFutureDiscount = computed(() => {
-    return new Date(this.discount.startDate) > this.dateNow ? true : false
+    return new Date(this.discount().startDate) > this.dateNow ? true : false
   });
   isOutdatedDiscount = computed(() => {
-    return new Date(this.discount.endDate!) < this.dateNow ? true : false
+    return new Date(this.discount().endDate!) < this.dateNow ? true : false
   });
 
   deleteFavorite(): void {
@@ -45,7 +45,7 @@ export class FavoriteCardComponent {
 
     dialogRef.afterClosed().subscribe((isDelete: any) => {
       if (isDelete) {
-        this.favoriteService.deleteFavorite(this.discount.id).pipe(
+        this.favoriteService.deleteFavorite(this.discount().id).pipe(
           tap(() => {
             this.updateCardsAfterDelete.emit();
             this.toaster.open('Discount has been removed from favorites', 'success');

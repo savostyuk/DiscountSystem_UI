@@ -1,5 +1,5 @@
 
-import { Component, computed, Input, signal, ViewEncapsulation } from '@angular/core';
+import { Component, computed, signal, ViewEncapsulation, input } from '@angular/core';
 import { CategoryComponent } from "../category/category.component";
 import { TagComponent } from "../tag/tag.component";
 import { MatIconModule } from '@angular/material/icon';
@@ -16,9 +16,9 @@ import { TranslateModule } from '@ngx-translate/core';
   encapsulation: ViewEncapsulation.None
 })
 export class DiscountCardComponent {
-  @Input() discount!: IDiscount;
+  readonly discount = input.required<IDiscount>();
   dateNow: Date = new Date();
   isFutureDiscount = computed(() => {
-    return new Date(this.discount.startDate) > this.dateNow ? true : false
+    return new Date(this.discount().startDate) > this.dateNow ? true : false
   });
 }

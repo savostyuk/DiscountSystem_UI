@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ITab } from '../../models/tab.interface';
@@ -12,5 +12,5 @@ import { MatTabsModule } from '@angular/material/tabs';
   encapsulation: ViewEncapsulation.None
 })
 export class NavModeratorAdminComponent {
-  @Input() tabs: Array<ITab> | undefined;
+  readonly tabs = input<Array<ITab>>();
 }

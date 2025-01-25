@@ -1,20 +1,20 @@
 <div class="list-input-container">
   <mat-form-field appearance="outline">
-    <mat-label>{{label}}</mat-label>
+    <mat-label>{{label()}}</mat-label>
 
     <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [matChipInputAddOnBlur]="addOnBlur" [(ngModel)]="newItem" (keydown.enter)="add(newItem)"
-      [disabled]="isDisabled">
+      [disabled]="isDisabled()">
 
       <mat-chip-grid #chipList></mat-chip-grid>
     </mat-form-field>
 
-    <button class="list-input-button" mat-raised-button [disabled]="isDisabled" (click)="add(newItem)">{{
+    <button class="list-input-button" mat-raised-button [disabled]="isDisabled()" (click)="add(newItem)">{{
     'categories-and-tags.add' | translate }}</button>
   </div>
 
   <div class="chips-container">
-    @for (item of options; track item) {
+    @for (item of options(); track item) {
       <mat-chip [selectable]="selectable" [removable]="removable" (removed)="remove(item)"
         (dblclick)="changeItem(item)">
         @if (!item.isChanged) {
